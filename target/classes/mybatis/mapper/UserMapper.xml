@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+    <mapper namespace="com.dao.mapper.UserMapper">
+
+    	<select id="findUserByNameAndPassword" parameterType="User" resultType="User">
+    		SELECT user_id userId,name,password,email,description,api_key apiKey,activation_status activationStatus,avatar,role
+    		FROM user
+    		WHERE name = #{name} AND password = #{password}
+    	</select>
+    	
+    	<select id="findUserByName" parameterType="String" resultType="User">
+    		SELECT user_id userId,name,password,email,description,api_key apiKey,activation_status activationStatus,avatar,role
+    		FROM user
+    		WHERE name = #{name}
+    	</select>
+    	
+		<update id="updateActivationStatus" parameterType="User">
+			UPDATE user SET activation_status=1 WHERE api_key=#{apiKey}
+		</update>
+		
+		<insert id="addUser" parameterType="User" useGeneratedKeys="true" keyProperty="user_id">
+			INSERT INTO user(name,password,email,description,api_key,activation_status,avatar,role)
+			VALUES(#{name},#{password},#{email},#{description},#{apiKey},0,'/resource/images/avatar-default.gif',2)
+		</insert>
+    	
+    	<update id="updateUser" parameterType="User">
+    		UPDATE user SET email=#{email},description=#{description},password=#{password} WHERE user_id=#{userId}
+    	</update>
+    	
+    	<select id="findSenderBySenderId" parameterType="int" resultType="User">
+    		SELECT name FROM user WHERE user_id = #{userId}
+    	</select>
+
+    </mapper>

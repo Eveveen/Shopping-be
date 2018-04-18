@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+    <mapper namespace="com.dao.mapper.UserMessageMapper">
+
+    	<select id="findMsgByReceiverId" parameterType="int" resultType="UserMessage">
+    		SELECT msg_id msgId,receiver_id receiverId,sender_id senderId,type,subject,msg,send_time sendTime,read_status readStatus
+    		FROM user_mesage
+    		WHERE receiver_id = #{receiverId}
+    	</select>
+    	
+    	
+    	
+    	<update id="updateReadStatus" parameterType="int">
+    		UPDATE user_mesage SET read_status = 1 WHERE receiver_id = #{receiverId}
+    	</update>
+
+    </mapper>

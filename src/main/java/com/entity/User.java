@@ -2,15 +2,15 @@ package com.entity;
 
 public class User {
 	private Integer userId;
-	private String name;
+	private String userName;
 	private String password;
 	private String email;
-	private String description;
-	private String apiKey;
-	private Integer activationStatus;
+//	private String description;
+//	private String apiKey;
+//	private Integer activationStatus;
 	private String avatar;
 	private Integer role;
-	private String validateCode;
+//	private String validateCode;
 	
 	public User() {
 		super();
@@ -25,12 +25,12 @@ public class User {
 		this.userId = userId;
 	}
 
-	public String getName() {
-		return name;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getPassword() {
@@ -49,30 +49,6 @@ public class User {
 		this.email = email;
 	}
 
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public String getApiKey() {
-		return apiKey;
-	}
-
-	public void setApiKey(String apiKey) {
-		this.apiKey = apiKey;
-	}
-
-	public Integer getActivationStatus() {
-		return activationStatus;
-	}
-
-	public void setActivationStatus(Integer activationStatus) {
-		this.activationStatus = activationStatus;
-	}
-
 	public String getAvatar() {
 		return avatar;
 	}
@@ -87,13 +63,5 @@ public class User {
 
 	public void setRole(Integer role) {
 		this.role = role;
-	}
-
-	public String getValidateCode() {
-		return validateCode;
-	}
-
-	public void setValidateCode(String validateCode) {
-		this.validateCode = validateCode;
 	}
 }

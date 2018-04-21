@@ -6,12 +6,12 @@
     <mapper namespace="com.dao.mapper.UserMapper">
 
     	<select id="findUserByNameAndPassword" parameterType="User" resultType="User">
-    		SELECT user_id userId,name,password,email,description,api_key apiKey,activation_status activationStatus,avatar,role
+    		SELECT user_id userId,user_name userName,password,email,avatar,role
     		FROM user
-    		WHERE name = #{name} AND password = #{password}
+    		WHERE user_name = #{userName} AND password = #{password}
     	</select>
     	
-    	<select id="findUserByName" parameterType="String" resultType="User">
+    	<!-- <select id="findUserByName" parameterType="String" resultType="User">
     		SELECT user_id userId,name,password,email,description,api_key apiKey,activation_status activationStatus,avatar,role
     		FROM user
     		WHERE name = #{name}
@@ -32,6 +32,6 @@
     	
     	<select id="findSenderBySenderId" parameterType="int" resultType="User">
     		SELECT name FROM user WHERE user_id = #{userId}
-    	</select>
+    	</select> -->
 
     </mapper>

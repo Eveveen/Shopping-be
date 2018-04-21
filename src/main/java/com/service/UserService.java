@@ -56,7 +56,7 @@ public class UserService implements UserServiceIface {
 		ApplicationContext ac = new ClassPathXmlApplicationContext("spring/spring-mvc.xml");
 		UserServiceIface userService = (UserServiceIface) ac.getBean("userService");
 		
-		System.out.println(userService.findSenderBySenderId(7566).getName());
+		System.out.println(userService.findSenderBySenderId(7566).getUserName());
 	}
 
 }

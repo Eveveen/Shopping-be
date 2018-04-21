@@ -26,7 +26,7 @@ public class RegisterController {
 		String apikey = c.create();
 		
 		model.addAttribute("apikey",apikey);
-		user.setApiKey(apikey);
+//		user.setApiKey(apikey);
 		int b = userService.addUser(user);
 		if(b != 0){
 			
@@ -49,7 +49,7 @@ public class RegisterController {
 			
 			return "0";   // ²»´æÔÚ
 		} else{
-			System.out.println(userService.findUserByName(name).getName());
+			System.out.println(userService.findUserByName(name).getUserName());
 			
 			return "1";
 		}
@@ -60,7 +60,7 @@ public class RegisterController {
 		
 		System.out.println(apiKey + "");
 		User u = new User();
-		u.setApiKey(apiKey);
+//		u.setApiKey(apiKey);
 		
 		int b = userService.updateActivationStatus(u);
 		

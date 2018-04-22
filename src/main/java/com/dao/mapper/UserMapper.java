@@ -9,11 +9,13 @@ public interface UserMapper {
 	
 	public User findUserByNameAndPassword(User user);
 	
+	public int findUserByTelphone(User user);
+	
+	public int addUser(User user);
+	
 	public User findUserByName(String name);
 	
 	public int updateActivationStatus(User user);
-	
-	public int addUser(User user);
 	
 	public int updateUser(User user);
 	

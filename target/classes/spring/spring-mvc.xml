@@ -32,9 +32,9 @@
    	
    	<!-- 访问静态资源 -->
 	<mvc:annotation-driven></mvc:annotation-driven>
-	<!-- <mvc:resources location="/resource/javascript/" mapping="/resource/javascript/**"></mvc:resources>
+	<!-- <mvc:resources location="/resource/javascript/" mapping="/resource/javascript/**"></mvc:resources> -->
 	<mvc:resources location="/resource/css/" mapping="/resource/css/**"></mvc:resources>
     <mvc:resources location="/resource/fonts/" mapping="/resource/fonts/**"></mvc:resources>
     <mvc:resources location="/resource/images/" mapping="/resource/images/**"></mvc:resources>
-    <mvc:resources location="/resource/other/" mapping="/resource/other/**"></mvc:resources> -->
+    <mvc:resources location="/resource/other/" mapping="/resource/other/**"></mvc:resources>
 </beans>

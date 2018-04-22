@@ -11,6 +11,18 @@
     		WHERE user_name = #{userName} AND password = #{password}
     	</select>
     	
+    	<select id="findUserByTelphone" parameterType="Integer" resultType="int">
+    		<!-- SELECT user_id userId,user_name userName,password,email,avatar,role -->
+    		SELECT COUNT(*)
+    		FROM user
+    		WHERE telphone = #{telphone}
+    	</select>
+    	
+    	<insert id="addUser" parameterType="User" useGeneratedKeys="true" keyProperty="user_id">
+			INSERT INTO user(user_name,password,telphone,email,avatar,role)
+			VALUES(#{userName},#{password},#{telphone},#{email},'/resource/images/avatar-default.gif',1)
+		</insert>
+    	 
     	<!-- <select id="findUserByName" parameterType="String" resultType="User">
     		SELECT user_id userId,name,password,email,description,api_key apiKey,activation_status activationStatus,avatar,role
     		FROM user

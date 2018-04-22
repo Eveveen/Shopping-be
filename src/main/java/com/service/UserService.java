@@ -21,6 +21,18 @@ public class UserService implements UserServiceIface {
 		// TODO Auto-generated method stub
 		return userMapper.findUserByNameAndPassword(user);
 	}
+	
+	@Override
+	public int findUserByTelphone(User user) {
+		// TODO Auto-generated method stub
+		return userMapper.findUserByTelphone(user);
+	}
+	
+	@Override
+	public int addUser(User user) {
+		// TODO Auto-generated method stub
+		return userMapper.addUser(user);
+	}
 
 	@Override
 	public User findUserByName(String name) {
@@ -34,11 +46,7 @@ public class UserService implements UserServiceIface {
 		return userMapper.updateActivationStatus(user);
 	}
 
-	@Override
-	public int addUser(User user) {
-		// TODO Auto-generated method stub
-		return userMapper.addUser(user);
-	}
+	
 
 	@Override
 	public int updateUser(User user) {

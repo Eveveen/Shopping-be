@@ -5,12 +5,13 @@ public class User {
 	private String userName;
 	private String password;
 	private String email;
+	private Integer telphone;
 //	private String description;
 //	private String apiKey;
 //	private Integer activationStatus;
 	private String avatar;
 	private Integer role;
-//	private String validateCode;
+	private String validateCode;
 	
 	public User() {
 		super();
@@ -49,6 +50,14 @@ public class User {
 		this.email = email;
 	}
 
+	public Integer getTelphone() {
+		return telphone;
+	}
+
+	public void setTelphone(Integer telphone) {
+		this.telphone = telphone;
+	}
+
 	public String getAvatar() {
 		return avatar;
 	}
@@ -63,5 +72,13 @@ public class User {
 
 	public void setRole(Integer role) {
 		this.role = role;
+	}
+
+	public String getValidateCode() {
+		return validateCode;
+	}
+
+	public void setValidateCode(String validateCode) {
+		this.validateCode = validateCode;
 	}
 }

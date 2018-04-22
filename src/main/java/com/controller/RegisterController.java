@@ -20,6 +20,87 @@ public class RegisterController {
 	@Autowired
 	public UserServiceIface userService;
 	
+	private User tempUser = new User();
+	
+
+	/**
+	 * 点击获取验证码时，将获取到的手机号和对应的验证码保存在临时的对象中
+	 * @param user
+	 * @return
+	 */
+	@RequestMapping("/saveCode")
+	@ResponseBody
+	public String saveCode(User user){
+		if(user.getValidateCode() == null){
+			return "false";
+		} else {
+//			if(tempUser.getTelphone() != user.getTelphone() || tempUser.getValidateCode() == null){				
+			tempUser.setValidateCode(user.getValidateCode());
+			tempUser.setTelphone(user.getTelphone());
+//			}
+			return "true";
+		}
+	}
+	
+	/**
+	 * 验证验证码，将接收到的参数与tempUser中的数据进行比对
+	 * @param user
+	 * @return
+	 */
+	@RequestMapping("/verifyCode")
+	@ResponseBody
+	public String verifyCode(User user){
+		System.out.println("tem:" + tempUser.getValidateCode());
+		if(userService.findUserByTelphone(user) != 0 || tempUser.getValidateCode() == null){
+			return "false";
+		} else if(tempUser.getValidateCode().equals(user.getValidateCode()) 
+				&& tempUser.getTelphone().equals(user.getTelphone())&&userService.findUserByTelphone(user) == 0){
+			return "true";
+		} else {
+			return "false";
+		}
+	}
+	
+	/**
+	 * 注册新用户
+	 * @param user
+	 * @return
+	 */
+	@RequestMapping("/addUser")
+	@ResponseBody
+	public String addUser(User user){
+//		System.out.println("telphone::" + telphone);
+//		User user = new User();
+//		user.setTelphone(Integer.valueOf(telphone));
+		int result = userService.addUser(user);
+		System.out.println(result);
+		if(result == 0){			
+			return "false";
+		} else {			
+			return "true";
+		}
+	}
+	
+	/**
+	 * 注册新用户
+	 * @param user
+	 * @return
+	 */
+	/*@RequestMapping("/addUser")
+	@ResponseBody
+	public String addUser(String telphone){
+		System.out.println("telphone::" + telphone);
+		User user = new User();
+		user.setTelphone(Integer.valueOf(telphone));
+		int result = userService.addUser(user);
+		System.out.println(result);
+		if(result == 0){			
+			return "false";
+		} else {			
+			return "true";
+		}
+	}*/
+	
 	@RequestMapping("/toRegister")
 	public String toRegister(Model model,User user){
 		CreateApiKey c = new CreateApiKey();

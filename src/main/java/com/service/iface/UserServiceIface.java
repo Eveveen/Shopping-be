@@ -24,6 +24,11 @@ public interface UserServiceIface {
 	 */
 	public int addUser(User user);
 	
+	/**
+	 * 根据用户名查询用户信息
+	 * @param name
+	 * @return
+	 */
 	public User findUserByName(String name);
 	
 	public int updateActivationStatus(User user);

@@ -4,23 +4,61 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.entity.User;
 import com.service.iface.UserServiceIface;
 import com.util.CreateApiKey;
 
 @Controller
-public class RegisterController {
+public class UserController {
 	
 	@Autowired
 	public UserServiceIface userService;
 	
 	private User tempUser = new User();
+	
+	/**
+	 * 根据用户名和密码判断是否登录成功
+	 * @param user
+	 * @param attrs
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/login")
+	@ResponseBody
+	public String Login(User user, RedirectAttributes attrs,
+			HttpServletRequest request) {
+
+		String name = user.getUserName();
+		String password = user.getPassword();
+		System.out.println(name + ":::" + password);
+
+		HttpSession session = request.getSession();
+
+		User u = new User();
+		u.setUserName(name);
+		u.setPassword(password);
+
+		User userResult = userService.findUserByNameAndPassword(u);
+		int userId = 0;
+
+		if (userResult != null) {
+			
+			System.out.println("loginName::: " + userResult.getUserName());
+			userId = userResult.getUserId();
+			session.setAttribute("userName", userResult.getUserName());
+			return "true";
+		} else {
+			return "false";
+		}
+	}
 	
 
 	/**
@@ -69,11 +107,7 @@ public class RegisterController {
 	@RequestMapping("/addUser")
 	@ResponseBody
 	public String addUser(User user){
-//		System.out.println("telphone::" + telphone);
-//		User user = new User();
-//		user.setTelphone(Integer.valueOf(telphone));
 		int result = userService.addUser(user);
-		System.out.println(result);
 		if(result == 0){			
 			return "false";
 		} else {			
@@ -82,24 +116,43 @@ public class RegisterController {
 	}
 	
 	/**
-	 * 注册新用户
-	 * @param user
+	 * 根据用户姓名获取用户信息
+	 * @param userName
 	 * @return
 	 */
-	/*@RequestMapping("/addUser")
+	@RequestMapping("/getUserInfo")
 	@ResponseBody
-	public String addUser(String telphone){
-		System.out.println("telphone::" + telphone);
-		User user = new User();
-		user.setTelphone(Integer.valueOf(telphone));
-		int result = userService.addUser(user);
-		System.out.println(result);
-		if(result == 0){			
-			return "false";
-		} else {			
-			return "true";
+	public String getUserInfo(HttpServletRequest request){
+		System.out.println("hello");
+		HttpSession session = request.getSession();
+		String userName = (String) session.getAttribute("userName");
+		if(userName == null){
+			return null;
+		} else {
+			return userName;
+		}
+	}
+	/*public User findUserByName(String userName){
+		User user = userService.findUserByName(userName);
+		if(user != null ) {
+			return user;
+		} else {
+			return null;
 		}
 	}*/
+	
+	@RequestMapping("/getSessionName")
+	@ResponseBody
+	public User getSessionName(HttpServletRequest request){
+		System.out.println("hello");
+		HttpSession session = request.getSession();
+		String userName = (String) session.getAttribute("userName");
+		if(userName == null){
+			return null;
+		} else {
+			return userService.findUserByName(userName);
+		}
+	}
 	
 	@RequestMapping("/toRegister")
 	public String toRegister(Model model,User user){

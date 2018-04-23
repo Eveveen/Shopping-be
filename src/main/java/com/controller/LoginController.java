@@ -27,36 +27,6 @@ public class LoginController {
 
 	@Autowired
 	public UserMessageServiceIface userMessageService;
-	
-	@RequestMapping("/login")
-	@ResponseBody
-	public String Login(Model model, User user, RedirectAttributes attrs,
-			HttpServletRequest request) {
-
-		String name = user.getUserName();
-		String password = user.getPassword();
-		System.out.println(name + ":::" + password);
-
-		HttpSession session = request.getSession();
-
-		User u = new User();
-		u.setUserName(name);
-		u.setPassword(password);
-
-		User userResult = userService.findUserByNameAndPassword(u);
-		int userId = 0;
-
-		model.addAttribute("message", "");
-		if (userResult != null) {
-			
-			System.out.println("loginName::: " + userResult.getUserName());
-			userId = userResult.getUserId();
-			return "true";
-		} else {
-			model.addAttribute("message", "用户名或密码错误，请重新登录！");
-			return "false";
-		}
-	}
 
 	@RequestMapping("/toLogin")
 	public void Login1(Model model, User user, RedirectAttributes attrs,

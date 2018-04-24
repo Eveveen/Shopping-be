@@ -31,6 +31,13 @@ public interface UserServiceIface {
 	 */
 	public User findUserByName(String name);
 	
+	/**
+	 * 更新用户
+	 * @param userId
+	 * @return
+	 */
+	public int updateUserById(User user);
+	
 	public int updateActivationStatus(User user);
 	
 	public int updateUser(User user);

@@ -25,10 +25,15 @@
 		
 		<select id="findUserByName" parameterType="String" resultType="User">
     		<!-- SELECT user_id userId,user_name userName,password,email,avatar,role -->
-    		SELECT user_id userId,user_name userName,password,email,avatar,role
+    		SELECT user_id userId,user_name userName,password,email,avatar,role,telphone
     		FROM user
     		WHERE user_name = #{userName}
     	</select>
+    	
+    	<update id="updateUserById" parameterType="User">
+			UPDATE user SET user_name=#{userName},password=#{password},email=#{email},avatar=#{avatar},role=#{role},telphone=#{telphone}
+			WHERE user_id=#{userId}
+		</update>
     	 
     	<!-- <select id="findUserByName" parameterType="String" resultType="User">
     		SELECT user_id userId,name,password,email,description,api_key apiKey,activation_status activationStatus,avatar,role

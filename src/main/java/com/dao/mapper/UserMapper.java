@@ -15,6 +15,8 @@ public interface UserMapper {
 	
 	public User findUserByName(String name);
 	
+	public int updateUserById(User user);
+	
 	public int updateActivationStatus(User user);
 	
 	public int updateUser(User user);

@@ -122,16 +122,31 @@ public class UserController {
 	 */
 	@RequestMapping("/getUserInfo")
 	@ResponseBody
-	public String getUserInfo(HttpServletRequest request){
-		System.out.println("hello");
-		HttpSession session = request.getSession();
-		String userName = (String) session.getAttribute("userName");
-		if(userName == null){
+	public User getUserInfo(HttpServletRequest request, String userName){
+//		System.out.println("hello");
+//		HttpSession session = request.getSession();
+//		String userName = (String) session.getAttribute("userName");
+		User user = userService.findUserByName(userName);
+		System.out.println(user.getTelphone());
+		if(user == null){
 			return null;
 		} else {
-			return userName;
+			return user;
 		}
 	}
+	
+	/**
+	 * 更新用户
+	 * @param user
+	 * @return
+	 */
+	@RequestMapping("/updateUser")
+	@ResponseBody
+	public int updateUser(User user){
+		System.out.println("update,,," + user.getUserId());
+		return userService.updateUserById(user);
+	}
+	
 	/*public User findUserByName(String userName){
 		User user = userService.findUserByName(userName);
 		if(user != null ) {

@@ -8,11 +8,14 @@ import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.entity.Img;
 import com.entity.User;
+import com.service.iface.ImgServiceIface;
 import com.service.iface.UserServiceIface;
 import com.util.CreateApiKey;
 
@@ -21,6 +24,9 @@ public class UserController {
 	
 	@Autowired
 	public UserServiceIface userService;
+	
+	@Autowired
+	public ImgServiceIface imgService;
 	
 	private User tempUser = new User();
 	
@@ -145,6 +151,22 @@ public class UserController {
 	public int updateUser(User user){
 		System.out.println("update,,," + user.getUserId());
 		return userService.updateUserById(user);
+	}
+	
+	/**
+	 * ÉÏ´«Í¼Æ¬
+	 * @param img
+	 * @return
+	 */
+	@RequestMapping("/uploadImg")
+	@ResponseBody
+	public int uploadImg(@RequestBody Img img){
+//		System.out.println(imgCode);
+		System.out.println(img.getImgCode());
+//		Img img = new Img();
+//		img.setImgCode(imgCode);
+		System.out.println();
+		return imgService.createImg(img);
 	}
 	
 	/*public User findUserByName(String userName){

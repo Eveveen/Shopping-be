@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+    <mapper namespace="com.dao.mapper.ProductMapper">
+		
+		  <select id="getImgById" resultType="Product">
+		    SELECT i.*
+		    FROM img i
+		    where i.img_id=#{imgId}
+		  </select>
+		
+		  <insert id="addProduct"  parameterType="Product" useGeneratedKeys="true" keyProperty="pro_id">
+		    INSERT INTO product(pro_name,description,price,scan_num,category,update_time,pro_status,shop_id)
+		    VALUES(#{proName},#{description},#{price},#{scanNum},#{category},#{updateTime},#{proStatus},#{shopId})
+		  </insert>
+
+    </mapper>

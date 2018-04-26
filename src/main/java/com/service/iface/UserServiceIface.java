@@ -1,5 +1,7 @@
 package com.service.iface;
 
+import java.util.List;
+
 import com.entity.User;
 
 public interface UserServiceIface {
@@ -38,9 +40,22 @@ public interface UserServiceIface {
 	 */
 	public int updateUserById(User user);
 	
-	public int updateActivationStatus(User user);
+	/**
+	 * 删除用户
+	 * @param userId
+	 * @return
+	 */
+	public int deleteUser(Integer userId);
+	
+	/**
+	 * 查询所有用户
+	 * @return
+	 */
+	public List<User> findAllUser();
+	
+	/*public int updateActivationStatus(User user);
 	
 	public int updateUser(User user);
 	
-	public User findSenderBySenderId(int senderId);
+	public User findSenderBySenderId(int senderId);*/
 }

@@ -1,5 +1,7 @@
 package com.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,24 @@ public class ProductService implements ProductServiceIface {
 	public int addProduct(Product product) {
 		// TODO Auto-generated method stub
 		return productMapper.addProduct(product);
+	}
+
+	@Override
+	public int updateProduct(Product product) {
+		// TODO Auto-generated method stub
+		return productMapper.updateProduct(product);
+	}
+
+	@Override
+	public int deleteProduct(Integer proId) {
+		// TODO Auto-generated method stub
+		return productMapper.deleteProduct(proId);
+	}
+
+	@Override
+	public List<Product> findProductByShopId(Integer shopId) {
+		// TODO Auto-generated method stub
+		return productMapper.findProductByShopId(shopId);
 	}
 
 }

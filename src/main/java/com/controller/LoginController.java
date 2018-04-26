@@ -92,7 +92,7 @@ public class LoginController {
 		return "redirect:/user_profile";
 	}
 
-	@RequestMapping("/{toPage}/editUser")
+	/*@RequestMapping("/{toPage}/editUser")
 	public String save(@PathVariable(value = "toPage") String toPage,
 			User user, HttpServletRequest request, Model model) {
 		System.out.println(user.getUserName());
@@ -107,7 +107,7 @@ public class LoginController {
 //			u.setDescription(user.getDescription());
 		}
 
-		userService.updateUser(u);
+		//userService.updateUser(u);
 		session.setAttribute("user", u);
 
 		return "redirect:/{toPage}";
@@ -152,6 +152,6 @@ public class LoginController {
 
 		return "notifications";
 		// return null;
-	}
+	}*/
 
 }

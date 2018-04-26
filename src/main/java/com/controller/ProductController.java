@@ -1,5 +1,7 @@
 package com.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,6 +26,32 @@ public class ProductController {
 		} else {
 			return false;
 		}
+	}
+	
+	@RequestMapping("/editProduct")
+	@ResponseBody
+	public boolean updateProduct(Product product){
+		if(productService.updateProduct(product) == 1){
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	@RequestMapping("/deleteProduct")
+	@ResponseBody
+	public boolean deleteProduct(Integer proId){
+		if(productService.deleteProduct(proId) == 1){
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	@RequestMapping("/getAllProduct")
+	@ResponseBody
+	public List<Product> findAllProduct(Integer shopId){
+		return productService.findProductByShopId(shopId);
 	}
 
 }

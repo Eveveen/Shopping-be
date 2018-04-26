@@ -1,5 +1,7 @@
 package com.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -129,11 +131,7 @@ public class UserController {
 	@RequestMapping("/getUserInfo")
 	@ResponseBody
 	public User getUserInfo(HttpServletRequest request, String userName){
-//		System.out.println("hello");
-//		HttpSession session = request.getSession();
-//		String userName = (String) session.getAttribute("userName");
 		User user = userService.findUserByName(userName);
-		System.out.println(user.getTelphone());
 		if(user == null){
 			return null;
 		} else {
@@ -161,22 +159,28 @@ public class UserController {
 	@RequestMapping("/uploadImg")
 	@ResponseBody
 	public int uploadImg(@RequestBody Img img){
-//		System.out.println(imgCode);
-		System.out.println(img.getImgCode());
-//		Img img = new Img();
-//		img.setImgCode(imgCode);
-		System.out.println();
 		return imgService.createImg(img);
 	}
 	
-	/*public User findUserByName(String userName){
-		User user = userService.findUserByName(userName);
-		if(user != null ) {
-			return user;
-		} else {
-			return null;
-		}
-	}*/
+	/**
+	 * 获取所有用户
+	 * @return
+	 */
+	@RequestMapping("/getAllUser")
+	@ResponseBody
+	public List<User> getAllUser(){
+		return userService.findAllUser();
+	}
+	
+	/**
+	 * 删除用户
+	 * @return
+	 */
+	@RequestMapping("/deletelUser")
+	@ResponseBody
+	public int deletelUser(Integer userId){
+		return userService.deleteUser(userId);
+	}
 	
 	@RequestMapping("/getSessionName")
 	@ResponseBody
@@ -226,7 +230,7 @@ public class UserController {
 		}
 	}
 	
-	@RequestMapping("/apikeyTologin/{apikey}")
+	/*@RequestMapping("/apikeyTologin/{apikey}")
 	public String toLogin(@PathVariable(value="apikey") String apiKey,HttpServletRequest request,Model model){
 		
 		System.out.println(apiKey + "");
@@ -241,6 +245,6 @@ public class UserController {
 		model.addAttribute("flag", 1);
 			
 		return "redirect:/index";
-	}
+	}*/
 
 }

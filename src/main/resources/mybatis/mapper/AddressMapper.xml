@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+    <mapper namespace="com.dao.mapper.SellerMapper">
+
+    	<resultMap id="AddressMap" type="com.entity.Address">
+			<result column="address_id" jdbcType="INTEGER" property="addressId" />
+			<result column="consignee" jdbcType="VARCHAR" property="consignee" />
+			<result column="telphone" jdbcType="INTEGER" property="telphone" />
+			<result column="area" jdbcType="VARCHAR" property="area" />
+			<result column="address_name" jdbcType="VARCHAR" property="addressName" />
+			<result column="address_status" jdbcType="INTEGER" property="addressStatus" />
+			<result column="zipcode" jdbcType="INTEGER" property="zipCode" />
+			<result column="user_id" jdbcType="INTEGER" property="userId" />
+		 </resultMap>
+		 
+		 <!-- <select id="findShopBySellerId" resultMap="ShopMap">
+    		SELECT * FROM shop WHERE seller_id = #{sellerId}
+    	 </select>
+    	 
+    	 <insert id="addShop" parameterType="Shop" useGeneratedKeys="true" keyProperty="shop_id">
+			INSERT INTO shop(shop_name,description,rate,create_time,seller_id)
+			VALUES(#{shopName},#{description},#{rate},#{createTime},#{sellerId})
+		</insert>
+		
+		<update id="updateShop" parameterType="Shop">
+			UPDATE user SET shop_name=#{shopName},description=#{description},rate=#{rate},create_time=#{createTime},seller_id=#{sellerId}
+			WHERE shop_id=#{shopId}
+		</update>
+		
+		<delete id="deleteShop">
+			DELETE FROM shop WHERE shop_id=#{shopId}
+		</delete> -->
+
+    </mapper>

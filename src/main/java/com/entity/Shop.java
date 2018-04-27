@@ -10,6 +10,7 @@ public class Shop {
 	private Double rate;
 	private Date createTime;
 	private Integer sellerId;
+	private Integer shopStatus;
 	
 	public Integer getShopId() {
 		return shopId;
@@ -46,5 +47,11 @@ public class Shop {
 	}
 	public void setSellerId(Integer sellerId) {
 		this.sellerId = sellerId;
+	}
+	public Integer getShopStatus() {
+		return shopStatus;
+	}
+	public void setShopStatus(Integer shopStatus) {
+		this.shopStatus = shopStatus;
 	}
 }

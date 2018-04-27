@@ -12,6 +12,7 @@
 			<result column="rate" jdbcType="DOUBLE" property="rate" />
 			<result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
 			<result column="seller_id" jdbcType="INTEGER" property="sellerId" />
+			<result column="shop_status" jdbcType="INTEGER" property="shopStatus" />
 		 </resultMap>
 		 
 		 <select id="findShopBySellerId" resultMap="ShopMap">

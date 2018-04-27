@@ -16,22 +16,22 @@
 			<result column="user_id" jdbcType="INTEGER" property="userId" />
 		 </resultMap>
 		 
-		 <!-- <select id="findShopBySellerId" resultMap="ShopMap">
-    		SELECT * FROM shop WHERE seller_id = #{sellerId}
+		 <select id="findAddressByUserId" resultMap="AddressMap">
+    		SELECT * FROM address WHERE user_id = #{userId}
     	 </select>
     	 
-    	 <insert id="addShop" parameterType="Shop" useGeneratedKeys="true" keyProperty="shop_id">
-			INSERT INTO shop(shop_name,description,rate,create_time,seller_id)
-			VALUES(#{shopName},#{description},#{rate},#{createTime},#{sellerId})
+    	 <insert id="addAddress" parameterType="Address" useGeneratedKeys="true" keyProperty="address_id">
+			INSERT INTO address(consignee,telphone,area,address_name,address_status,zipcode zipCode,user_id)
+			VALUES(#{consignee},#{telphone},#{area},#{addressName},#{addressStatus},#{zipCode},#{userId})
 		</insert>
 		
-		<update id="updateShop" parameterType="Shop">
-			UPDATE user SET shop_name=#{shopName},description=#{description},rate=#{rate},create_time=#{createTime},seller_id=#{sellerId}
-			WHERE shop_id=#{shopId}
+		<update id="updateAddress" parameterType="Address">
+			UPDATE address SET consignee=#{consignee},telphone=#{telphone},area=#{area},address_name=#{addressName},address_status=#{addressStatus},zipcode=#{zipCode},user_id=#{userId}
+			WHERE address_id=#{addressId}
 		</update>
 		
-		<delete id="deleteShop">
-			DELETE FROM shop WHERE shop_id=#{shopId}
-		</delete> -->
+		<delete id="deleteAddress">
+			DELETE FROM address WHERE address_id=#{addressId}
+		</delete>
 
     </mapper>

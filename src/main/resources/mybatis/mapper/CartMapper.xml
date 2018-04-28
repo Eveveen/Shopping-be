@@ -22,8 +22,10 @@
 			VALUES(#{shopId},#{proId},#{userId},#{proNum})
 		</insert>
 		
+		<!-- UPDATE cart SET shop_id=#{shopId},user_id=#{userId},pro_num=#{proNum}
+			WHERE cart_id=#{cartId} -->
 		<update id="updateCart" parameterType="Cart">
-			UPDATE cart SET shop_id=#{shopId},user_id=#{userId},pro_num=#{proNum}
+			UPDATE cart SET pro_num=#{proNum}
 			WHERE cart_id=#{cartId}
 		</update>
 		

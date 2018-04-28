@@ -20,16 +20,16 @@
 		 </resultMap>
 		 
 		 <select id="findOrderByUserId" resultMap="OrderMap">
-    		SELECT * FROM order WHERE user_id = #{userId}
+    		SELECT * FROM orders WHERE user_id = #{userId}
     	 </select>
     	 
     	 <insert id="addOrder" parameterType="Order" useGeneratedKeys="true" keyProperty="order_id">
-			INSERT INTO cart(shop_id,pro_id,user_id,pro_num,address_id,comment_status,create_time,pay_time,deliver_time,deal_time)
+			INSERT INTO orders(shop_id,pro_id,user_id,pro_num,address_id,comment_status,create_time,pay_time,deliver_time,deal_time)
 			VALUES(#{shopId},#{proId},#{userId},#{proNum},#{addressId},#{commentStatus},#{createTime},#{payTime},#{deliverTime},#{dealTime})
 		</insert>
 		
 		<delete id="deleteOrder">
-			DELETE FROM order WHERE order_id=#{orderId}
+			DELETE FROM orders WHERE order_id=#{orderId}
 		</delete>
 
     </mapper>

@@ -2,6 +2,7 @@ package com.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dao.mapper.AddressMapper;
@@ -11,12 +12,19 @@ import com.service.iface.AddressServiceIface;
 @Service
 public class AddressService implements AddressServiceIface {
 	
+	@Autowired
 	private AddressMapper addressMapper;
 
 	@Override
 	public List<Address> findAddressByUserId(Integer userId) {
 		// TODO Auto-generated method stub
 		return addressMapper.findAddressByUserId(userId);
+	}
+	
+	@Override
+	public Address findAddressByAddressId(Integer addressId) {
+		// TODO Auto-generated method stub
+		return addressMapper.findAddressByAddressId(addressId);
 	}
 
 	@Override
@@ -36,5 +44,4 @@ public class AddressService implements AddressServiceIface {
 		// TODO Auto-generated method stub
 		return addressMapper.deleteAddress(addressId);
 	}
-
 }

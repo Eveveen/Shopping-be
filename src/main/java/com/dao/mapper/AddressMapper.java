@@ -17,6 +17,13 @@ public interface AddressMapper {
 	public List<Address> findAddressByUserId(Integer userId);
 	
 	/**
+	 * 根据addressId，查询地址
+	 * @param addressId
+	 * @return
+	 */
+	public Address findAddressByAddressId(Integer addressId);
+	
+	/**
 	 * 添加地址
 	 * @param address
 	 * @return

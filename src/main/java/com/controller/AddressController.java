@@ -52,8 +52,21 @@ public class AddressController {
 		} else {
 			return false;
 		}
-//		return true;
-//		return addressService.addAddress(address);
+	}
+	
+	/**
+	 * 
+	 * @param address
+	 * @return
+	 */
+	@RequestMapping("/changeAddressStatus")
+	@ResponseBody
+	public boolean changeAddressStatus(Integer userId){
+		if(addressService.changeAddressStatus(userId) != 0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	/**
@@ -78,8 +91,12 @@ public class AddressController {
 	 */
 	@RequestMapping("/deleteAddress")
 	@ResponseBody
-	public int deleteAddress(Integer addressId){
-		return addressService.deleteAddress(addressId);
+	public boolean deleteAddress(Integer addressId){
+		if(addressService.deleteAddress(addressId) == 1) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }

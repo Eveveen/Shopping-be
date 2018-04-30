@@ -1,5 +1,7 @@
 package com.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,10 +16,22 @@ public class ShopController {
 	@Autowired
 	private ShopServiceIface shopService;
 	
+	@RequestMapping("/getSellerShop")
+	@ResponseBody
+	public Shop findSellerShop(Integer sellerId){
+		return shopService.findShopBySellerId(sellerId);
+	}
+	
 	@RequestMapping("/getShop")
 	@ResponseBody
-	public Shop findShop(Integer sellerId){
-		return shopService.findShopBySellerId(sellerId);
+	public Shop findShopByShopId(Integer shopId){
+		return shopService.findShopByShopId(shopId);
+	}
+	
+	@RequestMapping("/getAllShop")
+	@ResponseBody
+	public List<Shop> findAllShop(){
+		return shopService.findAllShop();
 	}
 	
 	@RequestMapping("/addShop")

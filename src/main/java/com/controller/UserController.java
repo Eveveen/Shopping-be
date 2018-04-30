@@ -146,9 +146,13 @@ public class UserController {
 	 */
 	@RequestMapping("/updateUser")
 	@ResponseBody
-	public int updateUser(User user){
+	public boolean updateUser(User user){
 		System.out.println("update,,," + user.getUserId());
-		return userService.updateUserById(user);
+		if(userService.updateUserById(user) == 1) {
+			return true;
+		} else {			
+			return false;
+		}
 	}
 	
 	/**
@@ -160,6 +164,17 @@ public class UserController {
 	@ResponseBody
 	public int uploadImg(@RequestBody Img img){
 		return imgService.createImg(img);
+	}
+	
+	/**
+	 * 根据图片id获取图片
+	 * @param imgId
+	 * @return
+	 */
+	@RequestMapping("/getImg")
+	@ResponseBody
+	public Img getImgById(Integer imgId){
+		return imgService.getImgById(imgId);
 	}
 	
 	/**

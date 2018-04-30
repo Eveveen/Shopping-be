@@ -29,6 +29,11 @@
 			VALUES(#{consignee},#{telphone},#{area},#{addressName},#{addressStatus},#{zipCode},#{userId})
 		</insert>
 		
+		<update id="changeAddressStatus" parameterType="Address">
+			UPDATE address SET address_status=0
+			WHERE user_id=#{userId}
+		</update>
+		
 		<update id="updateAddress" parameterType="Address">
 			UPDATE address SET consignee=#{consignee},telphone=#{telphone},area=#{area},address_name=#{addressName},address_status=#{addressStatus},zipcode=#{zipCode}
 			WHERE address_id=#{addressId}

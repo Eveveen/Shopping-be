@@ -28,6 +28,13 @@ public interface AddressServiceIface {
 	public int addAddress(Address address);
 	
 	/**
+	 * 更新该用户的默认地址
+	 * @param userId
+	 * @return
+	 */
+	public int changeAddressStatus(Integer userId);
+	
+	/**
 	 * 更新地址
 	 * @param address
 	 * @return

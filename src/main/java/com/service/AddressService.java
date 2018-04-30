@@ -32,6 +32,12 @@ public class AddressService implements AddressServiceIface {
 		// TODO Auto-generated method stub
 		return addressMapper.addAddress(address);
 	}
+	
+	@Override
+	public int changeAddressStatus(Integer userId) {
+		// TODO Auto-generated method stub
+		return addressMapper.changeAddressStatus(userId);
+	}
 
 	@Override
 	public int updateAddress(Address address) {

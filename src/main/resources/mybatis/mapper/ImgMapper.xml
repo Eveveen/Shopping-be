@@ -5,10 +5,10 @@
 
     <mapper namespace="com.dao.mapper.ImgMapper">
 		
-		  <select id="getImgById" resultType="Img">
-		    SELECT i.*
-		    FROM img i
-		    where i.img_id=#{imgId}
+		  <select id="getImgById" parameterType="Integer" resultType="Img">
+		    SELECT img_id imgId, img_code imgCode
+		    FROM img
+		    WHERE img_id=#{imgId}
 		  </select>
 		
 		  <insert id="createImg"  parameterType="Img" useGeneratedKeys="true" keyProperty="img_id">

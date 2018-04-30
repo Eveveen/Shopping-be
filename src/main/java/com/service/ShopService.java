@@ -1,5 +1,7 @@
 package com.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,18 @@ public class ShopService implements ShopServiceIface {
 	public Shop findShopBySellerId(Integer sellerId) {
 		// TODO Auto-generated method stub
 		return shopMapper.findShopBySellerId(sellerId);
+	}
+	
+	@Override
+	public Shop findShopByShopId(Integer shopId) {
+		// TODO Auto-generated method stub
+		return shopMapper.findShopByShopId(shopId);
+	}
+	
+	@Override
+	public List<Shop> findAllShop() {
+		// TODO Auto-generated method stub
+		return shopMapper.findAllShop();
 	}
 
 	@Override

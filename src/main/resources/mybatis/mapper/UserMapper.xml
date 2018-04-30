@@ -15,8 +15,8 @@
 			<result column="img_id" jdbcType="INTEGER" property="imgId" />
 		 </resultMap>
 
-    	<select id="findUserByNameAndPassword" parameterType="User" resultType="User">
-    		SELECT user_id userId,user_name userName,password,email,avatar,role
+    	<select id="findUserByNameAndPassword" parameterType="User" resultMap="UserMap">
+    		SELECT *
     		FROM user
     		WHERE user_name = #{userName} AND password = #{password}
     	</select>
@@ -33,15 +33,21 @@
 			VALUES(#{userName},#{password},#{telphone},#{email},'/resource/images/avatar-default.gif',1)
 		</insert>
 		
-		<select id="findUserByName" parameterType="String" resultType="User">
-    		<!-- SELECT user_id userId,user_name userName,password,email,avatar,role -->
-    		SELECT user_id userId,user_name userName,password,email,avatar,role,telphone
+		<select id="findUserByName" parameterType="String" resultMap="UserMap">
+    		SELECT *
     		FROM user
     		WHERE user_name = #{userName}
     	</select>
+		
+		<!-- <select id="findUserByName" parameterType="String" resultType="User">
+    		SELECT user_id userId,user_name userName,password,email,avatar,role
+    		SELECT user_id userId,user_name userName,password,email,avatar,role,telphone
+    		FROM user
+    		WHERE user_name = #{userName}
+    	</select> -->
     	
     	<update id="updateUserById" parameterType="User">
-			UPDATE user SET user_name=#{userName},password=#{password},email=#{email},avatar=#{avatar},role=#{role},telphone=#{telphone}
+			UPDATE user SET user_name=#{userName},password=#{password},email=#{email},role=#{role},telphone=#{telphone},img_id=#{imgId}
 			WHERE user_id=#{userId}
 		</update>
 		

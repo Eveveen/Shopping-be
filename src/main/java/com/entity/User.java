@@ -12,6 +12,7 @@ public class User {
 	private String avatar;
 	private Integer role;
 	private String validateCode;
+	private Integer imgId;
 	
 	public User() {
 		super();
@@ -81,4 +82,13 @@ public class User {
 	public void setValidateCode(String validateCode) {
 		this.validateCode = validateCode;
 	}
+
+	public Integer getImgId() {
+		return imgId;
+	}
+
+	public void setImgId(Integer imgId) {
+		this.imgId = imgId;
+	}
+	
 }

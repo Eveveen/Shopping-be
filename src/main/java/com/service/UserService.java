@@ -7,7 +7,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
 
+import com.dao.mapper.ImgMapper;
 import com.dao.mapper.UserMapper;
+import com.entity.Img;
 import com.entity.User;
 import com.service.iface.UserMessageServiceIface;
 import com.service.iface.UserServiceIface;
@@ -17,6 +19,9 @@ public class UserService implements UserServiceIface {
 
 	@Autowired
 	public UserMapper userMapper;
+	
+	@Autowired
+	public ImgMapper imgMapper;
 	
 	@Override
 	public User findUserByNameAndPassword(User user) {
@@ -39,7 +44,15 @@ public class UserService implements UserServiceIface {
 	@Override
 	public User findUserByName(String name) {
 		// TODO Auto-generated method stub
-		return userMapper.findUserByName(name);
+		User user = userMapper.findUserByName(name);
+		if(user.getImgId() != null){			
+			Img img = imgMapper.getImgById(user.getImgId());
+			System.out.println(user.getImgId());
+			System.out.println(img.getImgId());
+			System.out.println(img.getImgCode());
+			user.setAvatar(img.getImgCode());
+		}
+		return user;
 	}
 	
 	@Override

@@ -24,21 +24,41 @@ public class CartController {
 	
 	@RequestMapping("addCart")
 	@ResponseBody
-	public int addCart(Cart cart){
-		return cartService.addCart(cart);
+	public boolean addCart(Cart cart){
+		if(cartService.addCart(cart) == 1){
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	@RequestMapping("editCart")
 	@ResponseBody
-	public int updateCart(Cart cart){
-		return cartService.updateCart(cart);
+	public boolean updateCart(Cart cart){
+		if(cartService.updateCart(cart) == 1){
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	@RequestMapping("deleteCart")
 	@ResponseBody
-	public int deleteCart(Integer cartId){
-		return cartService.deleteCart(cartId);
+	public boolean deleteCart(Integer cartId){
+		if(cartService.deleteCart(cartId) == 1){
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
-
+	@RequestMapping("deleteCarts")
+	@ResponseBody
+	public boolean deleteCarts(String[] cartIds){
+		if(cartService.deleteCartByIds(cartIds) != 0){
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

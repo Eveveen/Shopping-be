@@ -39,4 +39,10 @@ public class CartService implements CartServiceIface {
 		return cartMapper.deleteCart(cartId);
 	}
 
+	@Override
+	public int deleteCartByIds(String[] cartIds) {
+		// TODO Auto-generated method stub
+		return cartMapper.deleteCartByIds(cartIds);
+	}
+
 }

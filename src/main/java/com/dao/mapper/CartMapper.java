@@ -36,5 +36,12 @@ public interface CartMapper {
 	 * @return
 	 */
 	public int deleteCart(Integer cartId);
+	
+	/**
+	 * 一次删除多条记录
+	 * @param cartIds
+	 * @return
+	 */
+	public int deleteCartByIds(String[] cartIds);
 
 }

@@ -32,5 +32,12 @@
 		<delete id="deleteCart">
 			DELETE FROM cart WHERE cart_id=#{cartId}
 		</delete>
+		
+		<delete id="deleteCartByIds" parameterType = "java.util.Arrays">
+			<![CDATA[delete from cart where cart_id in ]]>  
+	        <foreach collection="array" index="index" item = "item" open="(" separator="," close=")">
+	        #{item}
+	        </foreach>  
+		</delete>
 
     </mapper>

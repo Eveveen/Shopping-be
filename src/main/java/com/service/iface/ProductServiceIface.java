@@ -1,6 +1,7 @@
 package com.service.iface;
 
 import java.util.List;
+import java.util.Map;
 
 import com.entity.Product;
 
@@ -33,4 +34,11 @@ public interface ProductServiceIface {
 	 * @return
 	 */
 	public List<Product> findProductByShopId(Integer shopId);
+	
+	/**
+	 * 根据店铺编号和商品编号查询商品信息
+	 * @param idMap
+	 * @return
+	 */
+	public Product findProductByShopIdAndProId(Map idMap);
 }

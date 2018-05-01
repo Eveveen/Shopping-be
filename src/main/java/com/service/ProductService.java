@@ -1,6 +1,7 @@
 package com.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,6 +38,12 @@ public class ProductService implements ProductServiceIface {
 	public List<Product> findProductByShopId(Integer shopId) {
 		// TODO Auto-generated method stub
 		return productMapper.findProductByShopId(shopId);
+	}
+
+	@Override
+	public Product findProductByShopIdAndProId(Map idMap) {
+		// TODO Auto-generated method stub
+		return productMapper.findProductByShopIdAndProId(idMap);
 	}
 
 }

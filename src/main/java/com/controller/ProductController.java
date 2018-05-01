@@ -1,6 +1,8 @@
 package com.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -52,6 +54,15 @@ public class ProductController {
 	@ResponseBody
 	public List<Product> findAllProduct(Integer shopId){
 		return productService.findProductByShopId(shopId);
+	}
+	
+	@RequestMapping("/getProduct")
+	@ResponseBody
+	public Product findProduct(Integer shopId, Integer proId){
+		Map<String ,Integer> idMap = new HashMap<String ,Integer>();
+		idMap.put("shopId", shopId);
+		idMap.put("proId", proId);
+		return productService.findProductByShopIdAndProId(idMap);
 	}
 
 }

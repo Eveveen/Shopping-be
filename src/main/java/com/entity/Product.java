@@ -14,6 +14,7 @@ public class Product {
 	private Integer category;
 	private Date updateTime;
 	private Integer proStatus;
+	private Integer proNum;
 	private Integer shopId;
 	private Map<Integer,String> imgMap;
 	
@@ -70,6 +71,12 @@ public class Product {
 	}
 	public void setProStatus(Integer proStatus) {
 		this.proStatus = proStatus;
+	}
+	public Integer getProNum() {
+		return proNum;
+	}
+	public void setProNum(Integer proNum) {
+		this.proNum = proNum;
 	}
 	public Integer getShopId() {
 		return shopId;

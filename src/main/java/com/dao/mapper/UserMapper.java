@@ -57,6 +57,13 @@ public interface UserMapper {
 	 */
 	public List<User> findAllUser();
 	
+	/**
+	 * 根据买家编号获取买家信息
+	 * @param userId
+	 * @return
+	 */
+	public User findUserByUserId(Integer userId);
+	
 	
 	/*public int updateActivationStatus(User user);
 	

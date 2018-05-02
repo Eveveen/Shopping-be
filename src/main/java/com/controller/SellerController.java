@@ -69,8 +69,12 @@ public class SellerController {
 	 */
 	@RequestMapping("/editSeller")
 	@ResponseBody
-	public int editSeller(Seller seller){
-		return sellerService.updateSellerById(seller);
+	public boolean editSeller(Seller seller){
+		if(sellerService.updateSellerById(seller) == 1) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	/**
@@ -82,6 +86,17 @@ public class SellerController {
 	@ResponseBody
 	public int deleteSeller(Integer sellerId){
 		return sellerService.deleteSeller(sellerId);
+	}
+	
+	/**
+	 * 根据卖家编号查询卖家信息
+	 * @param sellerId
+	 * @return
+	 */
+	@RequestMapping("/getSeller")
+	@ResponseBody
+	public Seller findSellerBySellerId(Integer sellerId) {
+		return sellerService.findSellerBySellerId(sellerId);
 	}
 
 }

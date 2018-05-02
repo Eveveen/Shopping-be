@@ -36,20 +36,32 @@ public class ShopController {
 	
 	@RequestMapping("/addShop")
 	@ResponseBody
-	public int addShop(Shop shop){
-		return shopService.addShop(shop);
+	public boolean addShop(Shop shop){
+		if(shopService.addShop(shop) == 1) {
+			return true;
+		} else {			
+			return false;
+		}
 	}
 	
 	@RequestMapping("/editShop")
 	@ResponseBody
-	public int editShop(Shop shop){
-		return shopService.updateShop(shop);
+	public boolean editShop(Shop shop){
+		if(shopService.updateShop(shop) == 1) {
+			return true;
+		} else {			
+			return false;
+		}
 	}
 	
 	@RequestMapping("/deleteShop")
 	@ResponseBody
-	public int deleteShop(Integer shopId){
-		return shopService.deleteShop(shopId);
+	public boolean deleteShop(Integer shopId){
+		if(shopService.deleteShop(shopId) == 1) {
+			return true;
+		} else {			
+			return false;
+		}
 	}
 
 

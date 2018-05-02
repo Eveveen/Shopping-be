@@ -191,11 +191,23 @@ public class UserController {
 	 * 删除用户
 	 * @return
 	 */
-	@RequestMapping("/deletelUser")
+	@RequestMapping("/deleteUser")
 	@ResponseBody
 	public int deletelUser(Integer userId){
 		return userService.deleteUser(userId);
 	}
+	
+	/**
+	 * 根据买家编号获取买家信息
+	 * @param userId
+	 * @return
+	 */
+	@RequestMapping("/getUser")
+	@ResponseBody
+	public User findUserByUserId(Integer userId){
+		return userService.findUserByUserId(userId);
+	}
+	
 	
 	@RequestMapping("/getSessionName")
 	@ResponseBody
@@ -209,6 +221,8 @@ public class UserController {
 			return userService.findUserByName(userName);
 		}
 	}
+	
+	
 	
 	@RequestMapping("/toRegister")
 	public String toRegister(Model model,User user){

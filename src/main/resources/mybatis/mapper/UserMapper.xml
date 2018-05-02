@@ -58,6 +58,12 @@
 		<select id="findAllUser" resultMap="UserMap">
     		SELECT * FROM user
     	</select>
+    	
+    	<select id="findUserByUserId" parameterType="Integer" resultMap="UserMap">
+    		SELECT *
+    		FROM user
+    		WHERE user_id = #{userId}
+    	</select>
     	 
     	<!-- <select id="findUserByName" parameterType="String" resultType="User">
     		SELECT user_id userId,name,password,email,description,api_key apiKey,activation_status activationStatus,avatar,role

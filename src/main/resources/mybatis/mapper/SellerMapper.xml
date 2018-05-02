@@ -37,6 +37,11 @@
 		<delete id="deleteSeller">
 			DELETE FROM seller WHERE seller_id=#{sellerId}
 		</delete>
+		
+		<select id="findSellerBySellerId" parameterType="Integer" resultMap="SellerMap">
+    		SELECT * FROM seller
+    		WHERE seller_id = #{sellerId}
+    	</select>
     	
     	<!-- <select id="findUserByTelphone" parameterType="Integer" resultType="int">
     		SELECT user_id userId,user_name userName,password,email,avatar,role

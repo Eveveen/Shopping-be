@@ -38,5 +38,12 @@ public interface SellerServiceIface {
 	 * @return
 	 */
 	public int deleteSeller(Integer sellerId);
+	
+	/**
+	 * 根据卖家编号查询卖家信息
+	 * @param sellerId
+	 * @return
+	 */
+	public Seller findSellerBySellerId(Integer sellerId);
 
 }

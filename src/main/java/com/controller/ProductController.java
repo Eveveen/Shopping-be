@@ -19,6 +19,11 @@ public class ProductController {
 	@Autowired
 	private ProductServiceIface productService;
 	
+	/**
+	 * 添加商品
+	 * @param product
+	 * @return
+	 */
 	@RequestMapping("/addProduct")
 	@ResponseBody
 	public boolean addProduct(@RequestBody Product product){
@@ -50,6 +55,11 @@ public class ProductController {
 		}
 	}
 	
+	/**
+	 * 查看本店铺所有商品
+	 * @param shopId
+	 * @return
+	 */
 	@RequestMapping("/getAllProduct")
 	@ResponseBody
 	public List<Product> findAllProduct(Integer shopId){

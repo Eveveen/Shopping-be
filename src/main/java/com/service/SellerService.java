@@ -15,31 +15,37 @@ public class SellerService implements SellerServiceIface {
 	@Autowired
 	private SellerMapper sellerMapper;
 
+	@Override
 	public Seller findSellerByNameAndPassword(Seller seller) {
 		// TODO Auto-generated method stub
 		return sellerMapper.findSellerByNameAndPassword(seller);
 	}
 
+	@Override
 	public List<Seller> findAllSeller() {
 		// TODO Auto-generated method stub
 		return sellerMapper.findAllSeller();
 	}
 
+	@Override
 	public int addSeller(Seller seller) {
 		// TODO Auto-generated method stub
 		return sellerMapper.addSeller(seller);
 	}
 
+	@Override
 	public int updateSellerById(Seller seller) {
 		// TODO Auto-generated method stub
 		return sellerMapper.updateSellerById(seller);
 	}
 
+	@Override
 	public int deleteSeller(Integer sellerId) {
 		// TODO Auto-generated method stub
 		return sellerMapper.deleteSeller(sellerId);
 	}
 
+	@Override
 	public Seller findSellerBySellerId(Integer sellerId) {
 		// TODO Auto-generated method stub
 		return sellerMapper.findSellerBySellerId(sellerId);

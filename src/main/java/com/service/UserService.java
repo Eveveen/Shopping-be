@@ -20,21 +20,25 @@ public class UserService implements UserServiceIface {
 	@Autowired
 	public ImgMapper imgMapper;
 	
+	@Override
 	public User findUserByNameAndPassword(User user) {
 		// TODO Auto-generated method stub
 		return userMapper.findUserByNameAndPassword(user);
 	}
 	
+	@Override
 	public int findUserByTelphone(User user) {
 		// TODO Auto-generated method stub
 		return userMapper.findUserByTelphone(user);
 	}
 	
+	@Override
 	public int addUser(User user) {
 		// TODO Auto-generated method stub
 		return userMapper.addUser(user);
 	}
 
+	@Override
 	public User findUserByName(String name) {
 		// TODO Auto-generated method stub
 		User user = userMapper.findUserByName(name);
@@ -48,21 +52,25 @@ public class UserService implements UserServiceIface {
 		return user;
 	}
 	
+	@Override
 	public int updateUserById(User user) {
 		// TODO Auto-generated method stub
 		return userMapper.updateUserById(user);
 	}
 
+	@Override
 	public List<User> findAllUser() {
 		// TODO Auto-generated method stub
 		return userMapper.findAllUser();
 	}
 
+	@Override
 	public int deleteUser(Integer userId) {
 		// TODO Auto-generated method stub
 		return userMapper.deleteUser(userId);
 	}
 
+	@Override
 	public User findUserByUserId(Integer userId) {
 		// TODO Auto-generated method stub
 		return userMapper.findUserByUserId(userId);

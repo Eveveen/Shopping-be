@@ -6,12 +6,36 @@
     <mapper namespace="com.dao.mapper.UserMapper">
 
     	<select id="findUserByNameAndPassword" parameterType="User" resultType="User">
-    		SELECT user_id userId,name,password,email,description,api_key apiKey,activation_status activationStatus,avatar,role
+    		SELECT user_id userId,user_name userName,password,email,avatar,role
     		FROM user
-    		WHERE name = #{name} AND password = #{password}
+    		WHERE user_name = #{userName} AND password = #{password}
     	</select>
     	
-    	<select id="findUserByName" parameterType="String" resultType="User">
+    	<select id="findUserByTelphone" parameterType="Integer" resultType="int">
+    		<!-- SELECT user_id userId,user_name userName,password,email,avatar,role -->
+    		SELECT COUNT(*)
+    		FROM user
+    		WHERE telphone = #{telphone}
+    	</select>
+    	
+    	<insert id="addUser" parameterType="User" useGeneratedKeys="true" keyProperty="user_id">
+			INSERT INTO user(user_name,password,telphone,email,avatar,role)
+			VALUES(#{userName},#{password},#{telphone},#{email},'/resource/images/avatar-default.gif',1)
+		</insert>
+		
+		<select id="findUserByName" parameterType="String" resultType="User">
+    		<!-- SELECT user_id userId,user_name userName,password,email,avatar,role -->
+    		SELECT user_id userId,user_name userName,password,email,avatar,role,telphone
+    		FROM user
+    		WHERE user_name = #{userName}
+    	</select>
+    	
+    	<update id="updateUserById" parameterType="User">
+			UPDATE user SET user_name=#{userName},password=#{password},email=#{email},avatar=#{avatar},role=#{role},telphone=#{telphone}
+			WHERE user_id=#{userId}
+		</update>
+    	 
+    	<!-- <select id="findUserByName" parameterType="String" resultType="User">
     		SELECT user_id userId,name,password,email,description,api_key apiKey,activation_status activationStatus,avatar,role
     		FROM user
     		WHERE name = #{name}
@@ -32,6 +56,6 @@
     	
     	<select id="findSenderBySenderId" parameterType="int" resultType="User">
     		SELECT name FROM user WHERE user_id = #{userId}
-    	</select>
+    	</select> -->
 
     </mapper>

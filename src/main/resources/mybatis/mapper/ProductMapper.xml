@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+    <mapper namespace="com.dao.mapper.ProductMapper">
+  
+		
+		 <resultMap id="ProductMap" type="com.entity.Product">
+			<result column="pro_id" jdbcType="INTEGER" property="proId" />
+			<result column="pro_name" jdbcType="VARCHAR" property="proName" />
+			<result column="description" jdbcType="VARCHAR" property="description" />
+			<result column="price" jdbcType="DOUBLE" property="price" />
+			<result column="scan_num" jdbcType="INTEGER" property="scanNum" />
+			<result column="category" jdbcType="INTEGER" property="category" />
+			<result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+			<result column="pro_status" jdbcType="INTEGER" property="proStatus" />
+			<result column="pro_num" jdbcType="INTEGER" property="proNum" />
+			<result column="shop_id" jdbcType="INTEGER" property="shopId" />
+		 </resultMap>
+		 
+		  <select id="getImgById" resultType="Product">
+		    SELECT i.*
+		    FROM img i
+		    where i.img_id=#{imgId}
+		  </select>
+		
+		  <insert id="addProduct"  parameterType="Product" useGeneratedKeys="true" keyProperty="pro_id">
+		    INSERT INTO product(pro_name,description,price,scan_num,category,update_time,pro_status,pro_num,shop_id)
+		    VALUES(#{proName},#{description},#{price},#{scanNum},#{category},#{updateTime},#{proStatus},#{proNum},#{shopId})
+		  </insert>
+		  
+		  <update id="updateProduct" parameterType="Product">
+			UPDATE product SET pro_name=#{proName},description=#{description},price=#{price},scan_num=#{scanNum},category=#{category},update_time=#{updateTime},pro_status=#{proStatus},pro_num=#{proNum}
+			WHERE pro_id=#{proId}
+		  </update>
+		  
+		  <delete id="deleteProduct">
+			DELETE FROM product WHERE pro_id=#{proId}
+		  </delete>
+		
+		  <select id="findProductByShopId" parameterType="int" resultMap="ProductMap">
+    		SELECT *
+    		FROM product
+    		WHERE shop_id = #{shopId}
+    	  </select>
+    	  
+    	  <select id="findProductByShopIdAndProId" parameterType="Map" resultMap="ProductMap">
+    		SELECT *
+    		FROM product
+    		WHERE shop_id = #{shopId} AND pro_id = #{proId}
+    	  </select>
+
+    </mapper>

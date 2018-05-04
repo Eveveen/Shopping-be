@@ -27,49 +27,19 @@ public class LoginController {
 
 	@Autowired
 	public UserMessageServiceIface userMessageService;
-	
-	@RequestMapping("/login")
-	@ResponseBody
-	public String Login(Model model, User user, RedirectAttributes attrs,
-			HttpServletRequest request) {
-
-		String name = user.getName();
-		String password = user.getPassword();
-		System.out.println(name + ":::" + password);
-
-		HttpSession session = request.getSession();
-
-		User u = new User();
-		u.setName(name);
-		u.setPassword(password);
-
-		User userResult = userService.findUserByNameAndPassword(u);
-		int userId = 0;
-
-		model.addAttribute("message", "");
-		if (userResult != null) {
-			
-			System.out.println("loginName::: " + userResult.getName());
-			userId = userResult.getUserId();
-			return "true";
-		} else {
-			model.addAttribute("message", "用户名或密码错误，请重新登录！");
-			return "false";
-		}
-	}
 
 	@RequestMapping("/toLogin")
-	public String Login1(Model model, User user, RedirectAttributes attrs,
+	public void Login1(Model model, User user, RedirectAttributes attrs,
 			HttpServletRequest request) {
 
-		String name = user.getName();
+		String name = user.getUserName();
 		String password = user.getPassword();
 		System.out.println(name + ":::" + password);
 
 		HttpSession session = request.getSession();
 
 		User u = new User();
-		u.setName(name);
+		u.setUserName(name);
 		u.setPassword(password);
 
 		User userResult = userService.findUserByNameAndPassword(u);
@@ -78,7 +48,7 @@ public class LoginController {
 		model.addAttribute("message", "");
 		if (userResult != null) {
 			
-			System.out.println("loginName::: " + userResult.getName());
+			System.out.println("loginName::: " + userResult.getUserName());
 			userId = userResult.getUserId();
 			List<UserMessage> msgList = userMessageService
 					.findMsgByReceiverId(userId);
@@ -94,24 +64,24 @@ public class LoginController {
 
 			session.setAttribute("count", count);
 
-			System.out.println("API KEY:::" + userResult.getApiKey());
-			System.out.println("ActiveStatus:::"
-					+ userResult.getActivationStatus());
-			session.setAttribute("user", userResult);
-			if (userResult.getActivationStatus() == 1) {
-				attrs.addAttribute("userId", userId);
-				session.removeAttribute("activationStatus");
-				session.setAttribute("apiKey", userResult.getApiKey());
-				return "redirect:/toIndex";
-			} else {
-				model.addAttribute("flag", "0");
-				session.setAttribute("activationStatus", userResult.getActivationStatus());
-				session.setAttribute("apiKey", userResult.getApiKey());
-				return "index";
-			}
+//			System.out.println("API KEY:::" + userResult.getApiKey());
+//			System.out.println("ActiveStatus:::"
+//					+ userResult.getActivationStatus());
+//			session.setAttribute("user", userResult);
+//			if (userResult.getActivationStatus() == 1) {
+//				attrs.addAttribute("userId", userId);
+//				session.removeAttribute("activationStatus");
+//				session.setAttribute("apiKey", userResult.getApiKey());
+//				return "redirect:/toIndex";
+//			} else {
+//				model.addAttribute("flag", "0");
+//				session.setAttribute("activationStatus", userResult.getActivationStatus());
+//				session.setAttribute("apiKey", userResult.getApiKey());
+//				return "index";
+//			}
 		} else {
 			model.addAttribute("message", "用户名或密码错误，请重新登录！");
-			return "login";
+//			return "login";
 		}
 	}
 
@@ -122,10 +92,10 @@ public class LoginController {
 		return "redirect:/user_profile";
 	}
 
-	@RequestMapping("/{toPage}/editUser")
+	/*@RequestMapping("/{toPage}/editUser")
 	public String save(@PathVariable(value = "toPage") String toPage,
 			User user, HttpServletRequest request, Model model) {
-		System.out.println(user.getName());
+		System.out.println(user.getUserName());
 
 		HttpSession session = request.getSession();
 		User u = (User) session.getAttribute("user");
@@ -134,10 +104,10 @@ public class LoginController {
 			u.setPassword(user.getPassword());
 		} else {
 			u.setEmail(user.getEmail());
-			u.setDescription(user.getDescription());
+//			u.setDescription(user.getDescription());
 		}
 
-		userService.updateUser(u);
+		//userService.updateUser(u);
 		session.setAttribute("user", u);
 
 		return "redirect:/{toPage}";
@@ -153,7 +123,7 @@ public class LoginController {
 		for (UserMessage um : msgList) {
 			System.out.println("sendId:::" + um.getSenderId());
 			String senderName = userService.findSenderBySenderId(
-					um.getSenderId()).getName();
+					um.getSenderId()).getUserName();
 
 			Date d = new Date();
 			int min = (int) ((d.getTime() - um.getSendTime().getTime()) / 60000);
@@ -182,6 +152,6 @@ public class LoginController {
 
 		return "notifications";
 		// return null;
-	}
+	}*/
 
 }

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+    <mapper namespace="com.dao.mapper.SellerMapper">
+    
+    	<resultMap id="SellerMap" type="com.entity.Seller">
+			<result column="seller_id" jdbcType="INTEGER" property="sellerId" />
+			<result column="seller_name" jdbcType="VARCHAR" property="sellerName" />
+			<result column="telphone" jdbcType="INTEGER" property="telphone" />
+			<result column="password" jdbcType="VARCHAR" property="password" />
+			<result column="email" jdbcType="VARCHAR" property="email" />
+			<result column="avatar" jdbcType="VARCHAR" property="avatar" />
+		 </resultMap>
+
+    	<select id="findSellerByNameAndPassword" parameterType="Seller" resultMap="SellerMap">
+    		SELECT *
+    		FROM seller
+    		WHERE seller_name = #{sellerName} AND password = #{password}
+    	</select>
+    	
+    	<select id="findAllSeller" resultMap="SellerMap">
+    		SELECT * FROM seller
+    	</select>
+    	
+    	<insert id="addSeller" parameterType="Seller" useGeneratedKeys="true" keyProperty="seller_id">
+			INSERT INTO user(seller_name,password,telphone,email,avatar)
+			VALUES(#{sellerName},#{password},#{telphone},#{email},#{avatar})
+		</insert>
+		
+		<update id="updateSellerById" parameterType="User">
+			UPDATE user SET seller_name=#{sellerName},password=#{password},email=#{email},avatar=#{avatar},telphone=#{telphone}
+			WHERE seller_id=#{sellerId}
+		</update>
+		
+		<delete id="deleteSeller">
+			DELETE FROM seller WHERE seller_id=#{sellerId}
+		</delete>
+		
+		<select id="findSellerBySellerId" parameterType="Integer" resultMap="SellerMap">
+    		SELECT * FROM seller
+    		WHERE seller_id = #{sellerId}
+    	</select>
+    	
+    	<!-- <select id="findUserByTelphone" parameterType="Integer" resultType="int">
+    		SELECT user_id userId,user_name userName,password,email,avatar,role
+    		SELECT COUNT(*)
+    		FROM user
+    		WHERE telphone = #{telphone}
+    	</select>
+    	
+    	<insert id="addUser" parameterType="User" useGeneratedKeys="true" keyProperty="user_id">
+			INSERT INTO user(user_name,password,telphone,email,avatar,role)
+			VALUES(#{userName},#{password},#{telphone},#{email},'/resource/images/avatar-default.gif',1)
+		</insert>
+		
+		<select id="findUserByName" parameterType="String" resultType="User">
+    		SELECT user_id userId,user_name userName,password,email,avatar,role
+    		SELECT user_id userId,user_name userName,password,email,avatar,role,telphone
+    		FROM user
+    		WHERE user_name = #{userName}
+    	</select>
+    	
+    	<update id="updateUserById" parameterType="User">
+			UPDATE user SET user_name=#{userName},password=#{password},email=#{email},avatar=#{avatar},role=#{role},telphone=#{telphone}
+			WHERE user_id=#{userId}
+		</update> -->
+    	 
+    	<!-- <select id="findUserByName" parameterType="String" resultType="User">
+    		SELECT user_id userId,name,password,email,description,api_key apiKey,activation_status activationStatus,avatar,role
+    		FROM user
+    		WHERE name = #{name}
+    	</select>
+    	
+		<update id="updateActivationStatus" parameterType="User">
+			UPDATE user SET activation_status=1 WHERE api_key=#{apiKey}
+		</update>
+		
+		<insert id="addUser" parameterType="User" useGeneratedKeys="true" keyProperty="user_id">
+			INSERT INTO user(name,password,email,description,api_key,activation_status,avatar,role)
+			VALUES(#{name},#{password},#{email},#{description},#{apiKey},0,'/resource/images/avatar-default.gif',2)
+		</insert>
+    	
+    	<update id="updateUser" parameterType="User">
+    		UPDATE user SET email=#{email},description=#{description},password=#{password} WHERE user_id=#{userId}
+    	</update>
+    	
+    	<select id="findSenderBySenderId" parameterType="int" resultType="User">
+    		SELECT name FROM user WHERE user_id = #{userId}
+    	</select> -->
+
+    </mapper>

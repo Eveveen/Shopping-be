@@ -9,6 +9,7 @@
 		 <resultMap id="ProductMap" type="com.entity.Product">
 			<result column="pro_id" jdbcType="INTEGER" property="proId" />
 			<result column="pro_name" jdbcType="VARCHAR" property="proName" />
+			<result column="img_id" jdbcType="INTEGER" property="imgId" />
 			<result column="description" jdbcType="VARCHAR" property="description" />
 			<result column="price" jdbcType="DOUBLE" property="price" />
 			<result column="scan_num" jdbcType="INTEGER" property="scanNum" />
@@ -26,12 +27,12 @@
 		  </select>
 		
 		  <insert id="addProduct"  parameterType="Product" useGeneratedKeys="true" keyProperty="pro_id">
-		    INSERT INTO product(pro_name,description,price,scan_num,category,update_time,pro_status,pro_num,shop_id)
-		    VALUES(#{proName},#{description},#{price},#{scanNum},#{category},#{updateTime},#{proStatus},#{proNum},#{shopId})
+		    INSERT INTO product(pro_name,img_id,description,price,scan_num,category,update_time,pro_status,pro_num,shop_id)
+		    VALUES(#{proName},#{imgId},#{description},#{price},#{scanNum},#{category},#{updateTime},#{proStatus},#{proNum},#{shopId})
 		  </insert>
 		  
 		  <update id="updateProduct" parameterType="Product">
-			UPDATE product SET pro_name=#{proName},description=#{description},price=#{price},scan_num=#{scanNum},category=#{category},update_time=#{updateTime},pro_status=#{proStatus},pro_num=#{proNum}
+			UPDATE product SET pro_name=#{proName},img_id=#{imgId},description=#{description},price=#{price},scan_num=#{scanNum},category=#{category},update_time=#{updateTime},pro_status=#{proStatus},pro_num=#{proNum}
 			WHERE pro_id=#{proId}
 		  </update>
 		  
@@ -49,6 +50,12 @@
     		SELECT *
     		FROM product
     		WHERE shop_id = #{shopId} AND pro_id = #{proId}
+    	  </select>
+    	  
+    	   <select id="findProductByProId" parameterType="int" resultMap="ProductMap">
+    		SELECT *
+    		FROM product
+    		WHERE pro_id = #{proId}
     	  </select>
 
     </mapper>

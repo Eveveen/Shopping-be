@@ -1,12 +1,14 @@
 package com.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dao.mapper.CartMapper;
 import com.entity.Cart;
+import com.entity.Product;
 import com.service.iface.CartServiceIface;
 
 @Service
@@ -43,6 +45,12 @@ public class CartService implements CartServiceIface {
 	public int deleteCartByIds(String[] cartIds) {
 		// TODO Auto-generated method stub
 		return cartMapper.deleteCartByIds(cartIds);
+	}
+
+	@Override
+	public Cart findCartByProIdAndUserId(Map idMap) {
+		// TODO Auto-generated method stub
+		return cartMapper.findCartByProIdAndUserId(idMap);
 	}
 
 }

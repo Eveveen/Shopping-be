@@ -1,10 +1,12 @@
 package com.dao.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
 import com.entity.Cart;
+import com.entity.Product;
 
 @Repository
 public interface CartMapper {
@@ -43,5 +45,12 @@ public interface CartMapper {
 	 * @return
 	 */
 	public int deleteCartByIds(String[] cartIds);
+	
+	/**
+	 * 根据商品编号和用户编号查询购物车信息
+	 * @param idMap
+	 * @return
+	 */
+	public Cart findCartByProIdAndUserId(Map idMap);
 
 }

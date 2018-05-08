@@ -60,6 +60,13 @@ public interface UserServiceIface {
 	 */
 	public User findUserByUserId(Integer userId);
 	
+	/**
+	 * 管理员更新用户
+	 * @param userId
+	 * @return
+	 */
+	public int editUserById(User user);
+	
 	/*public int updateActivationStatus(User user);
 	
 	public int updateUser(User user);

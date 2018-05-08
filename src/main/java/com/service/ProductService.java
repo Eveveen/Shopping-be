@@ -46,4 +46,10 @@ public class ProductService implements ProductServiceIface {
 		return productMapper.findProductByShopIdAndProId(idMap);
 	}
 
+	@Override
+	public Product findProductByProId(Integer proId) {
+		// TODO Auto-generated method stub
+		return productMapper.findProductByProId(proId);
+	}
+
 }

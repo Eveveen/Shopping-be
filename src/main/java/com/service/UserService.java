@@ -76,6 +76,12 @@ public class UserService implements UserServiceIface {
 		return userMapper.findUserByUserId(userId);
 	}
 
+	@Override
+	public int editUserById(User user) {
+		// TODO Auto-generated method stub
+		return userMapper.editUserById(user);
+	}
+
 	/*@Override
 	public int updateActivationStatus(User user) {
 		// TODO Auto-generated method stub

@@ -25,12 +25,12 @@
     	</select>
     	
     	<insert id="addSeller" parameterType="Seller" useGeneratedKeys="true" keyProperty="seller_id">
-			INSERT INTO user(seller_name,password,telphone,email,avatar)
+			INSERT INTO seller(seller_name,password,telphone,email,avatar)
 			VALUES(#{sellerName},#{password},#{telphone},#{email},#{avatar})
 		</insert>
 		
-		<update id="updateSellerById" parameterType="User">
-			UPDATE user SET seller_name=#{sellerName},password=#{password},email=#{email},avatar=#{avatar},telphone=#{telphone}
+		<update id="updateSellerById" parameterType="Seller">
+			UPDATE seller SET seller_name=#{sellerName},password=#{password},email=#{email},avatar=#{avatar},telphone=#{telphone}
 			WHERE seller_id=#{sellerId}
 		</update>
 		

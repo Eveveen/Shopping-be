@@ -41,7 +41,7 @@ public class UserController {
 	 */
 	@RequestMapping("/login")
 	@ResponseBody
-	public String Login(User user, RedirectAttributes attrs,
+	public User Login(User user, RedirectAttributes attrs,
 			HttpServletRequest request) {
 
 		String name = user.getUserName();
@@ -62,9 +62,9 @@ public class UserController {
 			System.out.println("loginName::: " + userResult.getUserName());
 			userId = userResult.getUserId();
 			session.setAttribute("userName", userResult.getUserName());
-			return "true";
+			return userResult;
 		} else {
-			return "false";
+			return null;
 		}
 	}
 	
@@ -147,8 +147,22 @@ public class UserController {
 	@RequestMapping("/updateUser")
 	@ResponseBody
 	public boolean updateUser(User user){
-		System.out.println("update,,," + user.getUserId());
 		if(userService.updateUserById(user) == 1) {
+			return true;
+		} else {			
+			return false;
+		}
+	}
+	
+	/**
+	 * 管理员更新用户
+	 * @param user
+	 * @return
+	 */
+	@RequestMapping("/editUser")
+	@ResponseBody
+	public boolean editUser(User user){
+		if(userService.editUserById(user) == 1) {
 			return true;
 		} else {			
 			return false;
@@ -193,8 +207,12 @@ public class UserController {
 	 */
 	@RequestMapping("/deleteUser")
 	@ResponseBody
-	public int deletelUser(Integer userId){
-		return userService.deleteUser(userId);
+	public boolean deletelUser(Integer userId){
+		if(userService.deleteUser(userId) == 1){
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	/**

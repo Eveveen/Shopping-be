@@ -6,7 +6,7 @@ import java.util.Map;
 public class Product {
 	private Integer proId;
 	private String proName;
-	/*private Integer imgId;*/
+	private Integer imgId;
 	private String imgCode;
 	private String description;
 	private Double price;
@@ -29,6 +29,12 @@ public class Product {
 	}
 	public void setProName(String proName) {
 		this.proName = proName;
+	}
+	public Integer getImgId() {
+		return imgId;
+	}
+	public void setImgId(Integer imgId) {
+		this.imgId = imgId;
 	}
 	public String getImgCode() {
 		return imgCode;

@@ -39,5 +39,11 @@
 	        #{item}
 	        </foreach>  
 		</delete>
+		
+		<select id="findCartByProIdAndUserId" parameterType="Map" resultMap="CartMap">
+    		SELECT *
+    		FROM cart
+    		WHERE pro_id = #{proId} AND user_id = #{userId}
+    	 </select>
 
     </mapper>

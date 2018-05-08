@@ -1,6 +1,8 @@
 package com.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -60,5 +62,14 @@ public class CartController {
 		} else {
 			return false;
 		}
+	}
+	
+	@RequestMapping("isCartExist")
+	@ResponseBody
+	public Cart findCartByProIdAndUserId(Integer proId, Integer userId){
+		Map<String ,Integer> idMap = new HashMap<String ,Integer>();
+		idMap.put("proId", proId);
+		idMap.put("userId", userId);
+		return cartService.findCartByProIdAndUserId(idMap);
 	}
 }

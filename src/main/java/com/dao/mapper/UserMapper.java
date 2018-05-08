@@ -64,6 +64,13 @@ public interface UserMapper {
 	 */
 	public User findUserByUserId(Integer userId);
 	
+	/**
+	 * 管理员更新用户
+	 * @param userId
+	 * @return
+	 */
+	public int editUserById(User user);
+	
 	
 	/*public int updateActivationStatus(User user);
 	

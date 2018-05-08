@@ -25,7 +25,7 @@ public class SellerController {
 	 */
 	@RequestMapping("/login")
 	@ResponseBody
-	public String Login(Seller seller) {
+	public Seller Login(Seller seller) {
 
 		String name = seller.getSellerName();
 		String password = seller.getPassword();
@@ -35,9 +35,9 @@ public class SellerController {
 		s.setPassword(password);
 
 		if (sellerService.findSellerByNameAndPassword(s) != null) {
-			return "true";
+			return sellerService.findSellerByNameAndPassword(s);
 		} else {
-			return "false";
+			return null;
 		}
 	}
 	
@@ -84,8 +84,12 @@ public class SellerController {
 	 */
 	@RequestMapping("/deleteSeller")
 	@ResponseBody
-	public int deleteSeller(Integer sellerId){
-		return sellerService.deleteSeller(sellerId);
+	public boolean deleteSeller(Integer sellerId){
+		if(sellerService.deleteSeller(sellerId) == 1){
+			return true;			
+		} else {
+			return false;
+		}
 	}
 	
 	/**

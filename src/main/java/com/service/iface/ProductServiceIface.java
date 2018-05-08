@@ -41,4 +41,11 @@ public interface ProductServiceIface {
 	 * @return
 	 */
 	public Product findProductByShopIdAndProId(Map idMap);
+	
+	/**
+	 * 根据商品编号查询商品信息
+	 * @param proId
+	 * @return
+	 */
+	public Product findProductByProId(Integer proId);
 }

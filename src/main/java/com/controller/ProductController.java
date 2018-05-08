@@ -74,5 +74,11 @@ public class ProductController {
 		idMap.put("proId", proId);
 		return productService.findProductByShopIdAndProId(idMap);
 	}
+	
+	@RequestMapping("/getProductByProId")
+	@ResponseBody
+	public Product findProductByProId(Integer proId){
+		return productService.findProductByProId(proId);
+	}
 
 }

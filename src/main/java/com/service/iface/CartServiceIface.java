@@ -1,8 +1,10 @@
 package com.service.iface;
 
 import java.util.List;
+import java.util.Map;
 
 import com.entity.Cart;
+import com.entity.Product;
 
 public interface CartServiceIface {
 	
@@ -40,5 +42,12 @@ public interface CartServiceIface {
 	 * @return
 	 */
 	public int deleteCartByIds(String[] cartIds);
+	
+	/**
+	 * 根据商品编号和用户编号查询购物车信息
+	 * @param idMap
+	 * @return
+	 */
+	public Cart findCartByProIdAndUserId(Map idMap);
 
 }

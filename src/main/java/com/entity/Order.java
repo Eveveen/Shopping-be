@@ -5,10 +5,12 @@ import java.util.Date;
 public class Order {
 	
 	private Integer orderId;
+	private Long orderNum;
 	private Integer shopId;
 	private Integer userId;
 	private Integer proId;
 	private Integer proNum;
+	private Double price;
 	private Integer addressId;
 	private Integer commentStatus;
 	private Date createTime;
@@ -21,6 +23,12 @@ public class Order {
 	}
 	public void setOrderId(Integer orderId) {
 		this.orderId = orderId;
+	}
+	public Long getOrderNum() {
+		return orderNum;
+	}
+	public void setOrderNum(Long orderNum) {
+		this.orderNum = orderNum;
 	}
 	public Integer getShopId() {
 		return shopId;
@@ -45,6 +53,12 @@ public class Order {
 	}
 	public void setProNum(Integer proNum) {
 		this.proNum = proNum;
+	}
+	public Double getPrice() {
+		return price;
+	}
+	public void setPrice(Double price) {
+		this.price = price;
 	}
 	public Integer getAddressId() {
 		return addressId;

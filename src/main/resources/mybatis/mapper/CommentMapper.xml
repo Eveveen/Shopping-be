@@ -6,23 +6,25 @@
     <mapper namespace="com.dao.mapper.CommentMapper">
     	<resultMap id="CommentMap" type="com.entity.Comment">
 			<result column="comment_id" jdbcType="INTEGER" property="commentId" />
+			<result column="shop_id" jdbcType="INTEGER" property="shopId" />
 			<result column="pro_id" jdbcType="INTEGER" property="proId" />
 			<result column="user_id" jdbcType="INTEGER" property="userId" />
 			<result column="description" jdbcType="VARCHAR" property="description" />
 			<result column="rate" jdbcType="DOUBLE" property="rate" />
+			<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
 		 </resultMap>
 		 
 		 <select id="findCommentByProId" resultMap="CommentMap">
-    		SELECT * FROM orders WHERE pro_id = #{proId}
+    		SELECT * FROM comment WHERE pro_id = #{proId}
     	 </select>
     	 
     	 <insert id="addComment" parameterType="Comment" useGeneratedKeys="true" keyProperty="comment_id">
-			INSERT INTO orders(pro_id,user_id,description,rate)
-			VALUES(#{proId},#{userId},#{description},#{rate})
+			INSERT INTO comment(shop_id,pro_id,user_id,description,rate,create_time)
+			VALUES(#{shopId},#{proId},#{userId},#{description},#{rate},#{createTime})
 		</insert>
 		
 		<delete id="deleteComment">
-			DELETE FROM orders WHERE comment_id=#{commentId}
+			DELETE FROM comment WHERE comment_id=#{commentId}
 		</delete>
 
     </mapper>

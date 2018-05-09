@@ -80,5 +80,16 @@ public class ProductController {
 	public Product findProductByProId(Integer proId){
 		return productService.findProductByProId(proId);
 	}
+	
+	/**
+	 * 根据关键字搜索商品
+	 * @param proName
+	 * @return
+	 */
+	@RequestMapping("/searchProduct")
+	@ResponseBody
+	public List<Product> searchProduct(String proName){
+		return productService.searchProduct(proName);
+	}
 
 }

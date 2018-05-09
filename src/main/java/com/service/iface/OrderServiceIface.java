@@ -26,5 +26,13 @@ public interface OrderServiceIface {
 	 * @return
 	 */
 	public int deleteOrder(Integer orderId);
+	
+	/**
+	 * ¸üÐÂÆÀ¼Û×´Ì¬
+	 * @param order
+	 * @return
+	 */
+	public int updateOrderCommentStatus(Order order);
+
 
 }

@@ -76,15 +76,16 @@ public class UserController {
 	 */
 	@RequestMapping("/saveCode")
 	@ResponseBody
-	public String saveCode(User user){
+	public boolean saveCode(User user){
+		System.out.println("saveCode");
 		if(user.getValidateCode() == null){
-			return "false";
+			return false;
 		} else {
 //			if(tempUser.getTelphone() != user.getTelphone() || tempUser.getValidateCode() == null){				
 			tempUser.setValidateCode(user.getValidateCode());
 			tempUser.setTelphone(user.getTelphone());
 //			}
-			return "true";
+			return true;
 		}
 	}
 	

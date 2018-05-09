@@ -2,6 +2,7 @@ package com.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dao.mapper.CommentMapper;
@@ -11,6 +12,7 @@ import com.service.iface.CommentServiceIface;
 @Service
 public class CommentService implements CommentServiceIface {
 	
+	@Autowired
 	private CommentMapper commentMapper;
 
 	@Override

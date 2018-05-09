@@ -33,4 +33,10 @@ public class OrderService implements OrderServiceIface {
 		return orderMapper.deleteOrder(orderId);
 	}
 
+	@Override
+	public int updateOrderCommentStatus(Order order) {
+		// TODO Auto-generated method stub
+		return orderMapper.updateOrderCommentStatus(order);
+	}
+
 }

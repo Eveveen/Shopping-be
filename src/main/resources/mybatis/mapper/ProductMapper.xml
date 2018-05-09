@@ -57,5 +57,12 @@
     		FROM product
     		WHERE pro_id = #{proId}
     	  </select>
+    	  
+    	  <select id="searchProduct" parameterType="String" resultMap="ProductMap">
+    		SELECT *
+    		FROM product
+    		WHERE pro_name LIKE #{proName} 
+    	</select>
+		
 
     </mapper>

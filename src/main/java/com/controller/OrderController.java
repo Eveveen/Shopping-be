@@ -24,15 +24,41 @@ public class OrderController {
 	
 	@RequestMapping("/addOrder")
 	@ResponseBody
-	public int addOrder(Order order){
-		return orderService.addOrder(order);
+	public boolean addOrder(Order order){
+		if(orderService.addOrder(order) == 1) {
+			return true;
+		} else {
+			return false;
+		}
+		
 	}
 	
 	@RequestMapping("/deleteOrder")
 	@ResponseBody
-	public int deleteOrder(Integer orderId){
-		return orderService.deleteOrder(orderId);
+	public boolean deleteOrder(Integer orderId){
+		if(orderService.deleteOrder(orderId) == 1) {
+			return true;
+		} else {
+			return false;
+		}
 	}
+	
+	/**
+	 * ¸üÐÂÆÀ¼Û×´Ì¬
+	 * @param order
+	 * @return
+	 */
+	@RequestMapping("/editOrderCommentStatus")
+	@ResponseBody
+	public boolean updateOrderCommentStatus(Order order){
+		if(orderService.updateOrderCommentStatus(order) == 1) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	
 
 
 }

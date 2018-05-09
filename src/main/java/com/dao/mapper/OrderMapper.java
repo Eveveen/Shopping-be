@@ -29,5 +29,12 @@ public interface OrderMapper {
 	 * @return
 	 */
 	public int deleteOrder(Integer orderId);
+	
+	/**
+	 * ¸üĞÂÆÀ¼Û×´Ì¬
+	 * @param order
+	 * @return
+	 */
+	public int updateOrderCommentStatus(Order order);
 
 }

@@ -58,8 +58,12 @@ public class SellerController {
 	 */
 	@RequestMapping("/addSeller")
 	@ResponseBody
-	public int addSeller(Seller seller){
-		return sellerService.addSeller(seller);
+	public boolean addSeller(Seller seller){
+		if(sellerService.addSeller(seller) == 1){
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	/**

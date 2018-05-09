@@ -7,10 +7,12 @@
 
     	<resultMap id="OrderMap" type="com.entity.Order">
 			<result column="order_id" jdbcType="INTEGER" property="orderId" />
+			<result column="order_num" jdbcType="BIGINT" property="orderNum" />
 			<result column="shop_id" jdbcType="INTEGER" property="shopId" />
 			<result column="user_id" jdbcType="INTEGER" property="userId" />
 			<result column="pro_id" jdbcType="INTEGER" property="proId" />
 			<result column="pro_num" jdbcType="INTEGER" property="proNum" />
+			<result column="price" jdbcType="DOUBLE" property="price" />
 			<result column="address_id" jdbcType="INTEGER" property="addressId" />
 			<result column="comment_status" jdbcType="INTEGER" property="commentStatus" />
 			<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
@@ -24,12 +26,17 @@
     	 </select>
     	 
     	 <insert id="addOrder" parameterType="Order" useGeneratedKeys="true" keyProperty="order_id">
-			INSERT INTO orders(shop_id,pro_id,user_id,pro_num,address_id,comment_status,create_time,pay_time,deliver_time,deal_time)
-			VALUES(#{shopId},#{proId},#{userId},#{proNum},#{addressId},#{commentStatus},#{createTime},#{payTime},#{deliverTime},#{dealTime})
+			INSERT INTO orders(order_num,shop_id,pro_id,user_id,pro_num,price,address_id,comment_status,create_time,pay_time,deliver_time,deal_time)
+			VALUES(#{orderNum},#{shopId},#{proId},#{userId},#{proNum},#{price},#{addressId},#{commentStatus},#{createTime},#{payTime},#{deliverTime},#{dealTime})
 		</insert>
 		
 		<delete id="deleteOrder">
 			DELETE FROM orders WHERE order_id=#{orderId}
 		</delete>
+		
+		<update id="updateOrderCommentStatus" parameterType="Order">
+			UPDATE orders SET comment_status = #{commentStatus}
+			WHERE order_id=#{orderId}
+		  </update>
 
     </mapper>

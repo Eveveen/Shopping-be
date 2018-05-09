@@ -52,4 +52,11 @@ public class ProductService implements ProductServiceIface {
 		return productMapper.findProductByProId(proId);
 	}
 
+	@Override
+	public List<Product> searchProduct(String proName) {
+		// TODO Auto-generated method stub
+		proName = "%" + proName + "%";
+		return productMapper.searchProduct(proName);
+	}
+
 }

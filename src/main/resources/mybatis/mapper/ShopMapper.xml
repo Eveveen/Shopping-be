@@ -33,7 +33,7 @@
 		</insert>
 		
 		<update id="updateShop" parameterType="Shop">
-			UPDATE user SET shop_name=#{shopName},description=#{description},rate=#{rate},create_time=#{createTime},seller_id=#{sellerId}
+			UPDATE shop SET shop_name=#{shopName},description=#{description},rate=#{rate},create_time=#{createTime},seller_id=#{sellerId}
 			WHERE shop_id=#{shopId}
 		</update>
 		

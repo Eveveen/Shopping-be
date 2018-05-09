@@ -52,4 +52,11 @@ public interface ProductMapper {
 	 */
 	public Product findProductByProId(Integer proId);
 	
+	/**
+	 * 根据关键字查询商品
+	 * @param proName
+	 * @return
+	 */
+	public List<Product> searchProduct(String proName);
+	
 }

@@ -30,7 +30,7 @@
     	
     	<insert id="addUser" parameterType="User" useGeneratedKeys="true" keyProperty="user_id">
 			INSERT INTO user(user_name,password,telphone,email,avatar,role)
-			VALUES(#{userName},#{password},#{telphone},#{email},'/resource/images/avatar-default.gif',1)
+			VALUES(#{userName},#{password},#{telphone},#{email},'',1)
 		</insert>
 		
 		<select id="findUserByName" parameterType="String" resultMap="UserMap">

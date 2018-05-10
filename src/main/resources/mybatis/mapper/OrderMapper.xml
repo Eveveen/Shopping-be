@@ -37,6 +37,12 @@
 		<update id="updateOrderCommentStatus" parameterType="Order">
 			UPDATE orders SET comment_status = #{commentStatus}
 			WHERE order_id=#{orderId}
-		  </update>
+		</update>
+		
+		<select id="findOrderByUserIdAndStatus" parameterType="Map" resultMap="OrderMap">
+    		SELECT *
+    		FROM orders
+    		WHERE user_id = #{userId} AND comment_status = #{commentStatus}
+    	</select>
 
     </mapper>

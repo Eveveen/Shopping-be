@@ -1,6 +1,7 @@
 package com.service.iface;
 
 import java.util.List;
+import java.util.Map;
 
 import com.entity.Order;
 
@@ -33,6 +34,18 @@ public interface OrderServiceIface {
 	 * @return
 	 */
 	public int updateOrderCommentStatus(Order order);
-
-
+	
+	/**
+	 * 根据商品名称查询订单
+	 * @param name
+	 * @return
+	 */
+	public List<Order> searchOrder(Integer userId, String name);
+	
+	/**
+	 * 根据评价状态查询该用户的订单
+	 * @param map
+	 * @return
+	 */
+	public List<Order> findOrderByUserIdAndStatus(Map map);
 }

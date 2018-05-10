@@ -62,7 +62,7 @@
     		SELECT *
     		FROM product
     		WHERE pro_name LIKE #{proName} 
-    	</select>
+    	  </select>
 		
 
     </mapper>

@@ -1,6 +1,7 @@
 package com.dao.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
@@ -36,5 +37,12 @@ public interface OrderMapper {
 	 * @return
 	 */
 	public int updateOrderCommentStatus(Order order);
+	
+	/**
+	 * 根据评价状态查询该用户的订单
+	 * @param map
+	 * @return
+	 */
+	public List<Order> findOrderByUserIdAndStatus(Map map);
 
 }

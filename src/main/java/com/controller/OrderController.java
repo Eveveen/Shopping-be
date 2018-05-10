@@ -1,6 +1,8 @@
 package com.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -58,7 +60,29 @@ public class OrderController {
 		}
 	}
 	
+	/**
+	 * 根据关键字搜索订单
+	 * @param proName
+	 * @return
+	 */
+	@RequestMapping("/searchOrder")
+	@ResponseBody
+	public List<Order> searchOrder(Integer userId, String proName){
+		return orderService.searchOrder(userId, proName);
+	}
 	
-
-
+	/**
+	 * 根据评价状态查询该用户的订单
+	 * @param userId
+	 * @param commentStatus
+	 * @return
+	 */
+	@RequestMapping("/getOrderByStatus")
+	@ResponseBody
+	public List<Order> findOrderByUserIdAndStatus(Integer userId, Integer commentStatus){
+		Map<String,Integer> map = new HashMap<String,Integer>();
+		map.put("userId", userId);
+		map.put("commentStatus", commentStatus);
+		return orderService.findOrderByUserIdAndStatus(map);
+	}
 }

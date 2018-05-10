@@ -17,6 +17,7 @@ public class Order {
 	private Date payTime;
 	private Date deliverTime;
 	private Date dealTime;
+	private String proName;
 	
 	public Integer getOrderId() {
 		return orderId;
@@ -96,4 +97,11 @@ public class Order {
 	public void setDealTime(Date dealTime) {
 		this.dealTime = dealTime;
 	}
+	public String getProName() {
+		return proName;
+	}
+	public void setProName(String proName) {
+		this.proName = proName;
+	}
+
 }

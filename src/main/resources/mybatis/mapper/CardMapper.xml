@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+    <mapper namespace="com.dao.mapper.CardMapper">
+
+    	<resultMap id="CardMap" type="com.entity.Card">
+			<result column="card_id" jdbcType="INTEGER" property="cardId" />
+			<result column="user_id" jdbcType="INTEGER" property="userId" />
+			<result column="telphone" jdbcType="INTEGER" property="telphone" />
+			<result column="password" jdbcType="VARCHAR" property="password" />
+			<result column="balance" jdbcType="INTEGER" property="balance" />
+		 </resultMap>
+		 
+		 <select id="findCardByTelAndPassword" parameterType="Card" resultMap="CardMap">
+    		SELECT *
+    		FROM card
+    		WHERE telphone = #{telphone} AND password = #{password}
+    	</select>
+    	
+    	<update id="updateCardBalance" parameterType="Card">
+			UPDATE card SET balance=#{balance}
+			WHERE card_id=#{cartId}
+		</update>
+		 
+		 <!-- <select id="findCartByUserId" resultMap="CartMap">
+    		SELECT * FROM cart WHERE user_id = #{userId}
+    	 </select>
+    	 
+    	 <insert id="addCart" parameterType="Cart" useGeneratedKeys="true" keyProperty="cart_id">
+			INSERT INTO cart(shop_id,pro_id,user_id,pro_num)
+			VALUES(#{shopId},#{proId},#{userId},#{proNum})
+		</insert>
+		
+		
+		
+		<delete id="deleteCart">
+			DELETE FROM cart WHERE cart_id=#{cartId}
+		</delete>
+		
+		<delete id="deleteCartByIds" parameterType = "java.util.Arrays">
+			<![CDATA[delete from cart where cart_id in ]]>  
+	        <foreach collection="array" index="index" item = "item" open="(" separator="," close=")">
+	        #{item}
+	        </foreach>  
+		</delete>
+		
+		<select id="findCartByProIdAndUserId" parameterType="Map" resultMap="CartMap">
+    		SELECT *
+    		FROM cart
+    		WHERE pro_id = #{proId} AND user_id = #{userId}
+    	 </select> -->
+
+    </mapper>

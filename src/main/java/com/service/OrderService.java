@@ -77,4 +77,10 @@ public class OrderService implements OrderServiceIface {
 		// TODO Auto-generated method stub
 		return orderMapper.findOrderByUserIdAndStatus(map);
 	}
+
+	@Override
+	public int updateCommentStatusByOrderNum(Order order) {
+		// TODO Auto-generated method stub
+		return orderMapper.updateCommentStatusByOrderNum(order);
+	}
 }

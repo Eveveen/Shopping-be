@@ -32,7 +32,7 @@ public interface OrderMapper {
 	public int deleteOrder(Integer orderId);
 	
 	/**
-	 * 更新评价状态
+	 * 根据订单编号更新评价状态
 	 * @param order
 	 * @return
 	 */
@@ -44,5 +44,12 @@ public interface OrderMapper {
 	 * @return
 	 */
 	public List<Order> findOrderByUserIdAndStatus(Map map);
+	
+	/**
+	 * 根据订单编号更新评价状态
+	 * @param order
+	 * @return
+	 */
+	public int updateCommentStatusByOrderNum(Order order);
 
 }

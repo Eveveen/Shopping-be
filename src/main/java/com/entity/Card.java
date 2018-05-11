@@ -5,7 +5,7 @@ public class Card {
 	private Integer cardId;
 	private Integer userId;
 	private Integer telphone;
-	private String passwrod;
+	private String password;
 	private Double balance;
 	public Integer getCardId() {
 		return cardId;
@@ -25,11 +25,11 @@ public class Card {
 	public void setTelphone(Integer telphone) {
 		this.telphone = telphone;
 	}
-	public String getPasswrod() {
-		return passwrod;
+	public String getPassword() {
+		return password;
 	}
-	public void setPasswrod(String passwrod) {
-		this.passwrod = passwrod;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	public Double getBalance() {
 		return balance;

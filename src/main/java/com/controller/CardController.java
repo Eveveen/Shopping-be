@@ -19,7 +19,7 @@ public class CardController {
 	 * @param card
 	 * @return
 	 */
-	@RequestMapping("/pay")
+	@RequestMapping("/verifyCard")
 	@ResponseBody
 	public Card findCardByTelAndPassword(Card card) {
 		return cardService.findCardByTelAndPassword(card);

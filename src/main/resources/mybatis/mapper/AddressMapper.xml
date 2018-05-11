@@ -17,7 +17,7 @@
 		 </resultMap>
 		 
 		 <select id="findAddressByUserId" resultMap="AddressMap">
-    		SELECT * FROM address WHERE user_id = #{userId}
+    		SELECT * FROM address WHERE user_id = #{userId} ORDER BY address_status DESC
     	 </select>
     	 
     	 <select id="findAddressByAddressId" resultMap="AddressMap">

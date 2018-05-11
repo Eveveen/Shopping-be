@@ -21,7 +21,7 @@
     	
     	<update id="updateCardBalance" parameterType="Card">
 			UPDATE card SET balance=#{balance}
-			WHERE card_id=#{cartId}
+			WHERE telphone=#{telphone}
 		</update>
 		 
 		 <!-- <select id="findCartByUserId" resultMap="CartMap">

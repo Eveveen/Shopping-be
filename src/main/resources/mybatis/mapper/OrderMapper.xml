@@ -22,7 +22,7 @@
 		 </resultMap>
 		 
 		 <select id="findOrderByUserId" resultMap="OrderMap">
-    		SELECT * FROM orders WHERE user_id = #{userId}
+    		SELECT * FROM orders WHERE user_id = #{userId} ORDER BY create_time DESC
     	 </select>
     	 
     	 <insert id="addOrder" parameterType="Order" useGeneratedKeys="true" keyProperty="order_id">
@@ -39,10 +39,15 @@
 			WHERE order_id=#{orderId}
 		</update>
 		
+		<update id="updateCommentStatusByOrderNum" parameterType="Order">
+			UPDATE orders SET comment_status = #{commentStatus}, pay_time = #{payTime}
+			WHERE order_num=#{orderNum}
+		</update>
+		
 		<select id="findOrderByUserIdAndStatus" parameterType="Map" resultMap="OrderMap">
     		SELECT *
     		FROM orders
-    		WHERE user_id = #{userId} AND comment_status = #{commentStatus}
+    		WHERE user_id = #{userId} AND comment_status = #{commentStatus} ORDER BY create_time DESC
     	</select>
 
     </mapper>

@@ -1,5 +1,6 @@
 package com.controller;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +28,7 @@ public class OrderController {
 	@RequestMapping("/addOrder")
 	@ResponseBody
 	public boolean addOrder(Order order){
+		order.setCreateTime(new Date());
 		if(orderService.addOrder(order) == 1) {
 			return true;
 		} else {
@@ -53,11 +55,21 @@ public class OrderController {
 	@RequestMapping("/editOrderCommentStatus")
 	@ResponseBody
 	public boolean updateOrderCommentStatus(Order order){
-		if(orderService.updateOrderCommentStatus(order) == 1) {
-			return true;
+		order.setPayTime(new Date());
+		if(order.getOrderId() == null) {
+			if(orderService.updateCommentStatusByOrderNum(order) == 1) {
+				return true;
+			} else {
+				return false;
+			}
 		} else {
-			return false;
+			if(orderService.updateOrderCommentStatus(order) == 1) {
+				return true;
+			} else {
+				return false;
+			}
 		}
+		
 	}
 	
 	/**

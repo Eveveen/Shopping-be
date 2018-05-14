@@ -18,6 +18,20 @@ public interface OrderMapper {
 	public List<Order> findOrderByUserId(Integer userId);
 	
 	/**
+	 * 查询当前店铺的所有订单
+	 * @param shopId
+	 * @return
+	 */
+	public List<Order> findOrderByShopId(Integer shopId);
+	
+	/**
+	 * 根据订单编号查询订单
+	 * @param orderNum
+	 * @return
+	 */
+	public List<Order> findOrderByOrderNum(Long orderNum);
+	
+	/**
 	 * 新生成一个订单
 	 * @param order
 	 * @return
@@ -44,6 +58,13 @@ public interface OrderMapper {
 	 * @return
 	 */
 	public List<Order> findOrderByUserIdAndStatus(Map map);
+	
+	/**
+	 * 根据评价状态查询该店铺的订单
+	 * @param map
+	 * @return
+	 */
+	public List<Order> findOrderByShopIdAndStatus(Map map);
 	
 	/**
 	 * 根据订单编号更新评价状态

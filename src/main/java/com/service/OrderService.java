@@ -31,7 +31,25 @@ public class OrderService implements OrderServiceIface {
 		// TODO Auto-generated method stub
 		return orderMapper.findOrderByUserId(userId);
 	}
+	
+	@Override
+	public List<Order> findOrderByShopIdAndStatus(Map map) {
+		// TODO Auto-generated method stub
+		return orderMapper.findOrderByShopIdAndStatus(map);
+	}
+	
+	@Override
+	public List<Order> findOrderByShopId(Integer shopId) {
+		// TODO Auto-generated method stub
+		return orderMapper.findOrderByShopId(shopId);
+	}
 
+	@Override
+	public List<Order> findOrderByOrderNum(Long orderNum) {
+		// TODO Auto-generated method stub
+		return orderMapper.findOrderByOrderNum(orderNum);
+	}
+	
 	@Override
 	public int addOrder(Order order) {
 		// TODO Auto-generated method stub
@@ -83,4 +101,5 @@ public class OrderService implements OrderServiceIface {
 		// TODO Auto-generated method stub
 		return orderMapper.updateCommentStatusByOrderNum(order);
 	}
+
 }

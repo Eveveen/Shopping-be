@@ -24,6 +24,13 @@ public interface AddressMapper {
 	public Address findAddressByAddressId(Integer addressId);
 	
 	/**
+	 * 查询默认地址
+	 * @param userId
+	 * @return
+	 */
+	public Address findDefaultAddressByUserId(Integer userId);
+	
+	/**
 	 * 添加地址
 	 * @param address
 	 * @return

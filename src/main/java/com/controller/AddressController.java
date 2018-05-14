@@ -36,6 +36,12 @@ public class AddressController {
 		return addressService.findAddressByAddressId(addressId);
 	}
 	
+	@RequestMapping("/getDefaultAddress")
+	@ResponseBody
+	public Address findDefaultAddressByUserId(Integer userId){
+		return addressService.findDefaultAddressByUserId(userId);
+	}
+	
 	/**
 	 * ÃÌº”µÿ÷∑
 	 * @param address

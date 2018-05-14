@@ -28,6 +28,12 @@ public class AddressService implements AddressServiceIface {
 	}
 
 	@Override
+	public Address findDefaultAddressByUserId(Integer userId) {
+		// TODO Auto-generated method stub
+		return addressMapper.findDefaultAddressByUserId(userId);
+	}
+	
+	@Override
 	public int addAddress(Address address) {
 		// TODO Auto-generated method stub
 		return addressMapper.addAddress(address);

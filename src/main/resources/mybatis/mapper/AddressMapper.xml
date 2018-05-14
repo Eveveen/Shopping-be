@@ -20,6 +20,10 @@
     		SELECT * FROM address WHERE user_id = #{userId} ORDER BY address_status DESC
     	 </select>
     	 
+    	 <select id="findDefaultAddressByUserId" resultMap="AddressMap">
+    		SELECT * FROM address WHERE user_id = #{userId} AND address_status = 1
+    	 </select>
+    	 
     	 <select id="findAddressByAddressId" resultMap="AddressMap">
     		SELECT * FROM address WHERE address_id = #{addressId}
     	 </select>

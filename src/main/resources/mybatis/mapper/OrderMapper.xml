@@ -25,6 +25,14 @@
     		SELECT * FROM orders WHERE user_id = #{userId} ORDER BY create_time DESC
     	 </select>
     	 
+    	 <select id="findOrderByShopId" resultMap="OrderMap">
+    		SELECT * FROM orders WHERE shop_id = #{shopId} ORDER BY create_time DESC
+    	 </select>
+    	 
+    	 <select id="findOrderByOrderNum" resultMap="OrderMap">
+    		SELECT * FROM orders WHERE order_num = #{orderNum}
+    	 </select>
+    	 
     	 <insert id="addOrder" parameterType="Order" useGeneratedKeys="true" keyProperty="order_id">
 			INSERT INTO orders(order_num,shop_id,pro_id,user_id,pro_num,price,address_id,comment_status,create_time,pay_time,deliver_time,deal_time)
 			VALUES(#{orderNum},#{shopId},#{proId},#{userId},#{proNum},#{price},#{addressId},#{commentStatus},#{createTime},#{payTime},#{deliverTime},#{dealTime})
@@ -35,12 +43,12 @@
 		</delete>
 		
 		<update id="updateOrderCommentStatus" parameterType="Order">
-			UPDATE orders SET comment_status = #{commentStatus}
+			UPDATE orders SET comment_status = #{commentStatus}, pay_time = #{payTime}, deliver_time = #{deliverTime}, deal_time = #{dealTime}
 			WHERE order_id=#{orderId}
 		</update>
 		
 		<update id="updateCommentStatusByOrderNum" parameterType="Order">
-			UPDATE orders SET comment_status = #{commentStatus}, pay_time = #{payTime}
+			UPDATE orders SET comment_status = #{commentStatus}, pay_time = #{payTime}, deliver_time = #{deliverTime}, deal_time = #{dealTime}
 			WHERE order_num=#{orderNum}
 		</update>
 		
@@ -48,6 +56,12 @@
     		SELECT *
     		FROM orders
     		WHERE user_id = #{userId} AND comment_status = #{commentStatus} ORDER BY create_time DESC
+    	</select>
+    	
+    	<select id="findOrderByShopIdAndStatus" parameterType="Map" resultMap="OrderMap">
+    		SELECT *
+    		FROM orders
+    		WHERE shop_id = #{shopId} AND comment_status = #{commentStatus} ORDER BY create_time DESC
     	</select>
 
     </mapper>

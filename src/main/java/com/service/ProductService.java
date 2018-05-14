@@ -59,4 +59,13 @@ public class ProductService implements ProductServiceIface {
 		return productMapper.searchProduct(proName);
 	}
 
+	@Override
+	public List<Product> searchShopProduct(Map map) {
+		// TODO Auto-generated method stub
+		String proName = (String) map.get("proName");
+		proName = "%" + proName + "%";
+		map.put("proName", proName);
+		return productMapper.searchShopProduct(map);
+	}
+
 }

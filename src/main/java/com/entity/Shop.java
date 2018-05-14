@@ -11,6 +11,7 @@ public class Shop {
 	private Date createTime;
 	private Integer sellerId;
 	private Integer shopStatus;
+	private String addressArea;
 	
 	public Integer getShopId() {
 		return shopId;
@@ -53,5 +54,11 @@ public class Shop {
 	}
 	public void setShopStatus(Integer shopStatus) {
 		this.shopStatus = shopStatus;
+	}
+	public String getAddressArea() {
+		return addressArea;
+	}
+	public void setAddressArea(String addressArea) {
+		this.addressArea = addressArea;
 	}
 }

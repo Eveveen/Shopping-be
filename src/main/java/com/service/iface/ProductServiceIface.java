@@ -55,4 +55,11 @@ public interface ProductServiceIface {
 	 * @return
 	 */
 	public List<Product> searchProduct(String proName);
+	
+	/**
+	 * 根据关键字搜索店铺里的商品
+	 * @param map
+	 * @return
+	 */
+	public List<Product> searchShopProduct(Map map);
 }

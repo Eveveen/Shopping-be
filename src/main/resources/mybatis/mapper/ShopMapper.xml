@@ -13,6 +13,7 @@
 			<result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
 			<result column="seller_id" jdbcType="INTEGER" property="sellerId" />
 			<result column="shop_status" jdbcType="INTEGER" property="shopStatus" />
+			<result column="address_area" jdbcType="VARCHAR" property="addressArea" />
 		 </resultMap>
 		 
 		 <select id="findShopBySellerId" resultMap="ShopMap">
@@ -28,12 +29,12 @@
     	 </select>
     	 
     	 <insert id="addShop" parameterType="Shop" useGeneratedKeys="true" keyProperty="shop_id">
-			INSERT INTO shop(shop_name,description,rate,create_time,seller_id)
-			VALUES(#{shopName},#{description},#{rate},#{createTime},#{sellerId})
+			INSERT INTO shop(shop_name,description,rate,create_time,seller_id,address_area)
+			VALUES(#{shopName},#{description},#{rate},#{createTime},#{sellerId},#{addressArea})
 		</insert>
 		
 		<update id="updateShop" parameterType="Shop">
-			UPDATE shop SET shop_name=#{shopName},description=#{description},rate=#{rate},create_time=#{createTime},seller_id=#{sellerId}
+			UPDATE shop SET shop_name=#{shopName},description=#{description},rate=#{rate},create_time=#{createTime},seller_id=#{sellerId},address_area=#{addressArea}
 			WHERE shop_id=#{shopId}
 		</update>
 		

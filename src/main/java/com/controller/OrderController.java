@@ -25,9 +25,16 @@ public class OrderController {
 		return orderService.findOrderByUserId(userId);
 	}
 	
+	@RequestMapping("/getShopOrder")
+	@ResponseBody
+	public List<Order> findOrderByShopId(Integer shopId){
+		return orderService.findOrderByShopId(shopId);
+	}
+	
 	@RequestMapping("/addOrder")
 	@ResponseBody
 	public boolean addOrder(Order order){
+		System.out.println("adddate,," + new Date());
 		order.setCreateTime(new Date());
 		if(orderService.addOrder(order) == 1) {
 			return true;
@@ -55,14 +62,26 @@ public class OrderController {
 	@RequestMapping("/editOrderCommentStatus")
 	@ResponseBody
 	public boolean updateOrderCommentStatus(Order order){
-		order.setPayTime(new Date());
-		if(order.getOrderId() == null) {
+		List<Order> orderList = orderService.findOrderByOrderNum(order.getOrderNum());
+		for(Order o : orderList){
+			order.setPayTime(o.getPayTime());
+			order.setDealTime(o.getDealTime());
+			order.setDeliverTime(o.getDeliverTime());
+		}
+		if(order.getCommentStatus() == 0){ //已确认收收货，待评价
+			order.setDealTime(new Date());
+		} else if(order.getCommentStatus() == 3){ // 已付款，待发货			
+			order.setPayTime(new Date());
+		} else if(order.getCommentStatus() == 4){ // 已发货，待收货
+			order.setDeliverTime(new Date());
+		}
+		if(order.getOrderId() == null) { // 根据订单编号更新状态
 			if(orderService.updateCommentStatusByOrderNum(order) == 1) {
 				return true;
 			} else {
 				return false;
 			}
-		} else {
+		} else { // 根据订单Id更新状态
 			if(orderService.updateOrderCommentStatus(order) == 1) {
 				return true;
 			} else {
@@ -96,5 +115,20 @@ public class OrderController {
 		map.put("userId", userId);
 		map.put("commentStatus", commentStatus);
 		return orderService.findOrderByUserIdAndStatus(map);
+	}
+	
+	/**
+	 * 根据评价状态查询该店铺的订单
+	 * @param userId
+	 * @param commentStatus
+	 * @return
+	 */
+	@RequestMapping("/getOrderByShopIdAndStatus")
+	@ResponseBody
+	public List<Order> findOrderByShopIdAndStatus(Integer shopId, Integer commentStatus){
+		Map<String,Integer> map = new HashMap<String,Integer>();
+		map.put("shopId", shopId);
+		map.put("commentStatus", commentStatus);
+		return orderService.findOrderByShopIdAndStatus(map);
 	}
 }

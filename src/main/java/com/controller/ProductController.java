@@ -91,5 +91,14 @@ public class ProductController {
 	public List<Product> searchProduct(String proName){
 		return productService.searchProduct(proName);
 	}
+	
+	@RequestMapping("/searchShopProduct")
+	@ResponseBody
+	public List<Product> searchShopProduct(Integer shopId, String proName){
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("shopId", shopId);
+		map.put("proName", proName);
+		return productService.searchShopProduct(map);
+	}
 
 }

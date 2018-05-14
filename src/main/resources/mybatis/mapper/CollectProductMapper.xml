@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+    <mapper namespace="com.dao.mapper.CollectProductMapper">
+    	<resultMap id="CollectProductMap" type="com.entity.CollectProduct">
+			<result column="cp_id" jdbcType="INTEGER" property="cpId" />
+			<result column="pro_id" jdbcType="INTEGER" property="proId" />
+			<result column="shop_id" jdbcType="INTEGER" property="shopId" />
+			<result column="user_id" jdbcType="INTEGER" property="userId" />
+		 </resultMap>
+		 
+		 <select id="findCollectProductByUserId" resultMap="CollectProductMap">
+    		SELECT * FROM collect_product WHERE user_id = #{userId}
+    	 </select>
+    	 
+    	 <!-- 根据用户id和商品id查询该商品是否已经被收藏 -->
+    	 <select id="findCollectProductByUserIdAndProId" resultMap="CollectProductMap">
+    		SELECT * FROM collect_product WHERE user_id = #{userId} AND pro_id = #{proId}
+    	 </select>
+    	 
+    	 <insert id="addCollectProduct" parameterType="CollectProduct" useGeneratedKeys="true" keyProperty="cp_id">
+			INSERT INTO collect_product(pro_id,shop_id,user_id)
+			VALUES(#{proId},#{shopId},#{userId})
+		</insert>
+		
+		<delete id="deleteCollectProduct">
+			DELETE FROM collect_product WHERE cp_id=#{cpId}
+		</delete>
+
+    </mapper>

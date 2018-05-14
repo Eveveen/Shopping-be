@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.entity.Cart;
-import com.entity.Product;
 
 public interface CartServiceIface {
 	

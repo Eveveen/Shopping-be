@@ -6,7 +6,6 @@ import java.util.Map;
 import org.springframework.stereotype.Repository;
 
 import com.entity.Cart;
-import com.entity.Product;
 
 @Repository
 public interface CartMapper {

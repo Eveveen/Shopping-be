@@ -44,6 +44,11 @@ public class CartController {
 		}
 	}
 	
+	/**
+	 * 根据id删除单条购物车记录
+	 * @param cartId
+	 * @return
+	 */
 	@RequestMapping("deleteCart")
 	@ResponseBody
 	public boolean deleteCart(Integer cartId){
@@ -54,6 +59,11 @@ public class CartController {
 		}
 	}
 	
+	/**
+	 * 删除多条购物车记录
+	 * @param cartIds
+	 * @return
+	 */
 	@RequestMapping("deleteCarts")
 	@ResponseBody
 	public boolean deleteCarts(String[] cartIds){

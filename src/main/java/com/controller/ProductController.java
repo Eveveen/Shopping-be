@@ -100,5 +100,35 @@ public class ProductController {
 		map.put("proName", proName);
 		return productService.searchShopProduct(map);
 	}
+	
+	/**
+	 * 商品下架
+	 * @param proId
+	 * @return
+	 */
+	@RequestMapping("/updateProductStatus")
+	@ResponseBody
+	public boolean updateProductStatus(Integer proId){
+		if(productService.updateProductStatus(proId) == 1){
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	/**
+	 * 更改浏览次数
+	 * @param proId
+	 * @return
+	 */
+	@RequestMapping("/updateProductScanNum")
+	@ResponseBody
+	public boolean updateProductScanNum(Integer proId){
+		if(productService.updateProductScanNum(proId) == 1){
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 }

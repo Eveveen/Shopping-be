@@ -19,50 +19,71 @@
 			<result column="shop_id" jdbcType="INTEGER" property="shopId" />
 		 </resultMap>
 		 
+		 <!-- 根据图片Id获取图片 -->
 		  <select id="getImgById" resultType="Product">
 		    SELECT i.*
 		    FROM img i
 		    where i.img_id=#{imgId}
 		  </select>
 		
+		  <!-- 添加商品 -->
 		  <insert id="addProduct"  parameterType="Product" useGeneratedKeys="true" keyProperty="pro_id">
 		    INSERT INTO product(pro_name,img_id,description,price,scan_num,category,update_time,pro_status,pro_num,shop_id)
 		    VALUES(#{proName},#{imgId},#{description},#{price},#{scanNum},#{category},#{updateTime},#{proStatus},#{proNum},#{shopId})
 		  </insert>
 		  
+		  <!-- 修改商品信息 -->
 		  <update id="updateProduct" parameterType="Product">
 			UPDATE product SET pro_name=#{proName},img_id=#{imgId},description=#{description},price=#{price},scan_num=#{scanNum},category=#{category},update_time=#{updateTime},pro_status=#{proStatus},pro_num=#{proNum}
 			WHERE pro_id=#{proId}
 		  </update>
 		  
+		  <!-- 更改商品状态，下架商品 -->
+		  <update id="updateProductStatus" parameterType="Integer">
+			UPDATE product SET pro_status=0
+			WHERE pro_id=#{proId}
+		  </update>
+		  
+		  <!-- 更改商品浏览次数，每点击商品1次则更新 -->
+		  <update id="updateProductScanNum" parameterType="Integer">
+			UPDATE product SET scan_num=scan_num + 1
+			WHERE pro_id=#{proId}
+		  </update>
+		  
+		  <!-- 删除商品 -->
 		  <delete id="deleteProduct">
 			DELETE FROM product WHERE pro_id=#{proId}
 		  </delete>
 		
+		  <!-- 查询该店铺的所有商品 -->
 		  <select id="findProductByShopId" parameterType="int" resultMap="ProductMap">
     		SELECT *
     		FROM product
     		WHERE shop_id = #{shopId}
     	  </select>
     	  
+    	  <!-- 根据店铺id和商品id查询商品信息，有点多余了，可直接使用根据商品id进行查询 -->
     	  <select id="findProductByShopIdAndProId" parameterType="Map" resultMap="ProductMap">
     		SELECT *
     		FROM product
     		WHERE shop_id = #{shopId} AND pro_id = #{proId}
     	  </select>
     	  
-    	   <select id="findProductByProId" parameterType="int" resultMap="ProductMap">
+    	  <!-- 根据商品id查询商品信息 --> 
+    	  <select id="findProductByProId" parameterType="int" resultMap="ProductMap">
     		SELECT *
     		FROM product
     		WHERE pro_id = #{proId}
     	  </select>
     	  
+    	  <!-- 搜索所有的商品 -->
     	  <select id="searchProduct" parameterType="String" resultMap="ProductMap">
     		SELECT *
     		FROM product
-    		WHERE pro_name LIKE #{proName} 
+    		WHERE pro_name LIKE #{proName} ORDER BY scan_num DESC
     	  </select>
     	  
+    	  <!-- 搜索店铺内的商品 -->
     	  <select id="searchShopProduct" parameterType="Map" resultMap="ProductMap">
     		SELECT *
     		FROM product

@@ -62,4 +62,18 @@ public interface ProductServiceIface {
 	 * @return
 	 */
 	public List<Product> searchShopProduct(Map map);
+	
+	/**
+	 * 更改商品状态，上架下架 
+	 * @param map
+	 * @return
+	 */
+	public int updateProductStatus(Integer proId);
+	
+	/**
+	 * 更改商品浏览次数，每点击商品1次则更新
+	 * @param map
+	 * @return
+	 */
+	public int updateProductScanNum(Integer proId);
 }

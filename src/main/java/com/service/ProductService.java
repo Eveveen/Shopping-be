@@ -68,4 +68,16 @@ public class ProductService implements ProductServiceIface {
 		return productMapper.searchShopProduct(map);
 	}
 
+	@Override
+	public int updateProductStatus(Integer proId) {
+		// TODO Auto-generated method stub
+		return productMapper.updateProductStatus(proId);
+	}
+
+	@Override
+	public int updateProductScanNum(Integer proId) {
+		// TODO Auto-generated method stub
+		return productMapper.updateProductScanNum(proId);
+	}
+
 }

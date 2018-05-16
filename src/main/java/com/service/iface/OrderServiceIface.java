@@ -76,4 +76,11 @@ public interface OrderServiceIface {
 	 * @return
 	 */
 	public int updateCommentStatusByOrderNum(Order order);
+	
+	/**
+	 * 根据商品id查询订单，用于查询已售出多少件商品
+	 * @param proId
+	 * @return
+	 */
+	public List<Order> findOrderByProId(Integer proId);
 }

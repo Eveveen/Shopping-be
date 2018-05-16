@@ -131,4 +131,15 @@ public class OrderController {
 		map.put("commentStatus", commentStatus);
 		return orderService.findOrderByShopIdAndStatus(map);
 	}
+	
+	/**
+	 * 根据商品id查询订单，用于查询已售出多少件商品
+	 * @param proId
+	 * @return
+	 */
+	@RequestMapping("/getOrderByProId")
+	@ResponseBody
+	public List<Order> findOrderByProId(Integer proId){
+		return orderService.findOrderByProId(proId);
+	}
 }

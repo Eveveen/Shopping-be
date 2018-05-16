@@ -62,6 +62,13 @@
     		WHERE shop_id = #{shopId}
     	  </select>
     	  
+    	  <!-- 查询该店铺的未失效的商品 -->
+		  <select id="findActiveProductByShopId" parameterType="int" resultMap="ProductMap">
+    		SELECT *
+    		FROM product
+    		WHERE shop_id = #{shopId} AND pro_status = 1
+    	  </select>
+    	  
     	  <!-- 根据店铺id和商品id查询商品信息，有点多余了，可直接使用根据商品id进行查询 -->
     	  <select id="findProductByShopIdAndProId" parameterType="Map" resultMap="ProductMap">
     		SELECT *
@@ -88,6 +95,13 @@
     		SELECT *
     		FROM product
     		WHERE pro_name LIKE #{proName} AND shop_id = #{shopId}
+    	  </select>
+    	  
+    	  <!-- 搜索店铺内未失效的商品 -->
+    	  <select id="searchShopActiveProduct" parameterType="Map" resultMap="ProductMap">
+    		SELECT *
+    		FROM product
+    		WHERE pro_name LIKE #{proName} AND shop_id = #{shopId} AND pro_status = 1
     	  </select>
 		
 

@@ -80,4 +80,19 @@ public class ProductService implements ProductServiceIface {
 		return productMapper.updateProductScanNum(proId);
 	}
 
+	@Override
+	public List<Product> findActiveProductByShopId(Integer shopId) {
+		// TODO Auto-generated method stub
+		return productMapper.findActiveProductByShopId(shopId);
+	}
+
+	@Override
+	public List<Product> searchShopActiveProduct(Map map) {
+		// TODO Auto-generated method stub
+		String proName = (String) map.get("proName");
+		proName = "%" + proName + "%";
+		map.put("proName", proName);
+		return productMapper.searchShopActiveProduct(map);
+	}
+
 }

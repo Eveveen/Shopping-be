@@ -1,5 +1,7 @@
 package com.entity;
 
+import java.util.Date;
+
 public class Cart {
 	
 	private Integer cartId;
@@ -7,6 +9,7 @@ public class Cart {
 	private Integer proId;
 	private Integer userId;
 	private Integer proNum;
+	private Date updateTime;
 	
 	public Integer getCartId() {
 		return cartId;
@@ -37,5 +40,11 @@ public class Cart {
 	}
 	public void setProNum(Integer proNum) {
 		this.proNum = proNum;
+	}
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
 	}
 }

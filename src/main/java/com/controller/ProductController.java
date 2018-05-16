@@ -66,6 +66,17 @@ public class ProductController {
 		return productService.findProductByShopId(shopId);
 	}
 	
+	/**
+	 * 查询该店铺的未失效的商品
+	 * @param shopId
+	 * @return
+	 */
+	@RequestMapping("/getShopActiveProduct")
+	@ResponseBody
+	public List<Product> findActiveProductByShopId(Integer shopId){
+		return productService.findActiveProductByShopId(shopId);
+	}
+	
 	@RequestMapping("/getProduct")
 	@ResponseBody
 	public Product findProduct(Integer shopId, Integer proId){
@@ -92,6 +103,12 @@ public class ProductController {
 		return productService.searchProduct(proName);
 	}
 	
+	/**
+	 * 根据关键字搜索店铺里的商品
+	 * @param shopId
+	 * @param proName
+	 * @return
+	 */
 	@RequestMapping("/searchShopProduct")
 	@ResponseBody
 	public List<Product> searchShopProduct(Integer shopId, String proName){
@@ -99,6 +116,21 @@ public class ProductController {
 		map.put("shopId", shopId);
 		map.put("proName", proName);
 		return productService.searchShopProduct(map);
+	}
+	
+	/**
+	 * 根据关键字搜索店铺里未失效的商品
+	 * @param shopId
+	 * @param proName
+	 * @return
+	 */
+	@RequestMapping("/searchShopActiveProduct")
+	@ResponseBody
+	public List<Product> searchShopActiveProduct(Integer shopId, String proName){
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("shopId", shopId);
+		map.put("proName", proName);
+		return productService.searchShopActiveProduct(map);
 	}
 	
 	/**

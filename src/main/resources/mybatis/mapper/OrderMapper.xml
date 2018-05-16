@@ -63,5 +63,10 @@
     		FROM orders
     		WHERE shop_id = #{shopId} AND comment_status = #{commentStatus} ORDER BY create_time DESC
     	</select>
+    	
+    	<!-- 根据商品id查询订单，用于查询已售出多少件商品 -->
+    	<select id="findOrderByProId" resultMap="OrderMap">
+    		SELECT * FROM orders WHERE pro_id = #{proId}
+    	 </select>
 
     </mapper>

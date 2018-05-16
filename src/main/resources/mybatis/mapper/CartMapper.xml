@@ -11,21 +11,23 @@
 			<result column="pro_id" jdbcType="INTEGER" property="proId" />
 			<result column="user_id" jdbcType="INTEGER" property="userId" />
 			<result column="pro_num" jdbcType="INTEGER" property="proNum" />
+			<result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
 		 </resultMap>
 		 
 		 <select id="findCartByUserId" resultMap="CartMap">
-    		SELECT * FROM cart WHERE user_id = #{userId}
+    		SELECT * FROM cart WHERE user_id = #{userId} ORDER BY update_time DESC
     	 </select>
     	 
+    	 <!-- 添加1条购物车记录 -->
     	 <insert id="addCart" parameterType="Cart" useGeneratedKeys="true" keyProperty="cart_id">
-			INSERT INTO cart(shop_id,pro_id,user_id,pro_num)
-			VALUES(#{shopId},#{proId},#{userId},#{proNum})
+			INSERT INTO cart(shop_id,pro_id,user_id,pro_num,update_time)
+			VALUES(#{shopId},#{proId},#{userId},#{proNum},now())
 		</insert>
 		
 		<!-- UPDATE cart SET shop_id=#{shopId},user_id=#{userId},pro_num=#{proNum}
 			WHERE cart_id=#{cartId} -->
 		<update id="updateCart" parameterType="Cart">
-			UPDATE cart SET pro_num=#{proNum}
+			UPDATE cart SET pro_num=#{proNum},update_time=now()
 			WHERE cart_id=#{cartId}
 		</update>
 		
@@ -43,7 +45,7 @@
 		<select id="findCartByProIdAndUserId" parameterType="Map" resultMap="CartMap">
     		SELECT *
     		FROM cart
-    		WHERE pro_id = #{proId} AND user_id = #{userId}
+    		WHERE pro_id = #{proId} AND user_id = #{userId} ORDER BY update_time DESC
     	 </select>
 
     </mapper>

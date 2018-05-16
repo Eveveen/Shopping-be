@@ -102,4 +102,10 @@ public class OrderService implements OrderServiceIface {
 		return orderMapper.updateCommentStatusByOrderNum(order);
 	}
 
+	@Override
+	public List<Order> findOrderByProId(Integer proId) {
+		// TODO Auto-generated method stub
+		return orderMapper.findOrderByProId(proId);
+	}
+
 }

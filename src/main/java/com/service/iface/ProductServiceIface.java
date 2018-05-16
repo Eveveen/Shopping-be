@@ -36,6 +36,13 @@ public interface ProductServiceIface {
 	public List<Product> findProductByShopId(Integer shopId);
 	
 	/**
+	 * 查询该店铺的未失效的商品
+	 * @param shopId
+	 * @return
+	 */
+	public List<Product> findActiveProductByShopId(Integer shopId);
+	
+	/**
 	 * 根据店铺编号和商品编号查询商品信息
 	 * @param idMap
 	 * @return
@@ -62,6 +69,13 @@ public interface ProductServiceIface {
 	 * @return
 	 */
 	public List<Product> searchShopProduct(Map map);
+	
+	/**
+	 * 根据关键字搜索店铺里未失效的商品
+	 * @param map
+	 * @return
+	 */
+	public List<Product> searchShopActiveProduct(Map map);
 	
 	/**
 	 * 更改商品状态，上架下架 

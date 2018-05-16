@@ -71,10 +71,13 @@ public class ProductController {
 	 * @param shopId
 	 * @return
 	 */
-	@RequestMapping("/getShopActiveProduct")
+	@RequestMapping("/getShopProductByProStatus")
 	@ResponseBody
-	public List<Product> findActiveProductByShopId(Integer shopId){
-		return productService.findActiveProductByShopId(shopId);
+	public List<Product> findActiveProductByShopId(Integer shopId, Integer proStatus){
+		Map<String ,Integer> map = new HashMap<String ,Integer>();
+		map.put("shopId", shopId);
+		map.put("proStatus", proStatus);
+		return productService.findActiveProductByShopId(map);
 	}
 	
 	@RequestMapping("/getProduct")

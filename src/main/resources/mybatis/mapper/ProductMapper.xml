@@ -29,12 +29,12 @@
 		  <!-- 添加商品 -->
 		  <insert id="addProduct"  parameterType="Product" useGeneratedKeys="true" keyProperty="pro_id">
 		    INSERT INTO product(pro_name,img_id,description,price,scan_num,category,update_time,pro_status,pro_num,shop_id)
-		    VALUES(#{proName},#{imgId},#{description},#{price},#{scanNum},#{category},#{updateTime},#{proStatus},#{proNum},#{shopId})
+		    VALUES(#{proName},#{imgId},#{description},#{price},0,#{category},#{updateTime},#{proStatus},#{proNum},#{shopId})
 		  </insert>
 		  
 		  <!-- 修改商品信息 -->
 		  <update id="updateProduct" parameterType="Product">
-			UPDATE product SET pro_name=#{proName},img_id=#{imgId},description=#{description},price=#{price},scan_num=#{scanNum},category=#{category},update_time=#{updateTime},pro_status=#{proStatus},pro_num=#{proNum}
+			UPDATE product SET pro_name=#{proName},img_id=#{imgId},description=#{description},price=#{price},category=#{category},update_time=now(),pro_status=#{proStatus},pro_num=#{proNum}
 			WHERE pro_id=#{proId}
 		  </update>
 		  
@@ -63,10 +63,10 @@
     	  </select>
     	  
     	  <!-- 查询该店铺的未失效的商品 -->
-		  <select id="findActiveProductByShopId" parameterType="int" resultMap="ProductMap">
+		  <select id="findActiveProductByShopId" parameterType="Map" resultMap="ProductMap">
     		SELECT *
     		FROM product
-    		WHERE shop_id = #{shopId} AND pro_status = 1
+    		WHERE shop_id = #{shopId} AND pro_status = #{proStatus}
     	  </select>
     	  
     	  <!-- 根据店铺id和商品id查询商品信息，有点多余了，可直接使用根据商品id进行查询 -->

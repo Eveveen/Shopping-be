@@ -81,9 +81,9 @@ public class ProductService implements ProductServiceIface {
 	}
 
 	@Override
-	public List<Product> findActiveProductByShopId(Integer shopId) {
+	public List<Product> findActiveProductByShopId(Map map) {
 		// TODO Auto-generated method stub
-		return productMapper.findActiveProductByShopId(shopId);
+		return productMapper.findActiveProductByShopId(map);
 	}
 
 	@Override

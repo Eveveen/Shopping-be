@@ -39,11 +39,11 @@ public interface ProductMapper {
 	public List<Product> findProductByShopId(Integer shopId);
 	
 	/**
-	 * 查询该店铺的未失效的商品
+	 * 根据商品状态，上架或下架查询该店铺的商品
 	 * @param shopId
 	 * @return
 	 */
-	public List<Product> findActiveProductByShopId(Integer shopId);
+	public List<Product> findActiveProductByShopId(Map map);
 	
 	/**
 	 * 根据店铺编号和商品编号查询商品信息

@@ -64,5 +64,15 @@ public class ShopController {
 		}
 	}
 
+	/**
+	 * 根据店铺的状态查询店铺，管理员使用
+	 * @param shopStatus
+	 * @return
+	 */
+	@RequestMapping("/getShopByShopStatus")
+	@ResponseBody
+	public List<Shop> findShopByShopStatus(Integer shopStatus){
+		return shopService.findShopByShopStatus(shopStatus);
+	}
 
 }

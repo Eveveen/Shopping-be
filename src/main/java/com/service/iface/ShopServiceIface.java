@@ -46,5 +46,12 @@ public interface ShopServiceIface {
 	 * @return
 	 */
 	public int deleteShop(Integer shopId);
+	
+	/**
+	 * 根据店铺的状态查询店铺，管理员使用
+	 * @param shopStatus
+	 * @return
+	 */
+	public List<Shop> findShopByShopStatus(Integer shopStatus);
 
 }

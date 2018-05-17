@@ -51,4 +51,10 @@ public class ShopService implements ShopServiceIface {
 		return shopMapper.deleteShop(shopId);
 	}
 
+	@Override
+	public List<Shop> findShopByShopStatus(Integer shopStatus) {
+		// TODO Auto-generated method stub
+		return shopMapper.findShopByShopStatus(shopStatus);
+	}
+
 }

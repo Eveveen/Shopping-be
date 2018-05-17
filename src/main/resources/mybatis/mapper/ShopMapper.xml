@@ -24,6 +24,11 @@
     		SELECT * FROM shop WHERE shop_id = #{shopId}
     	 </select>
     	 
+    	 <!-- 根据店铺的状态查询店铺 -->
+    	 <select id="findShopByShopStatus" resultMap="ShopMap">
+    		SELECT * FROM shop WHERE shop_status = #{shopStatus}
+    	 </select>
+    	 
     	 <select id="findAllShop" resultMap="ShopMap">
     		SELECT * FROM shop
     	 </select>
@@ -34,7 +39,7 @@
 		</insert>
 		
 		<update id="updateShop" parameterType="Shop">
-			UPDATE shop SET shop_name=#{shopName},description=#{description},rate=#{rate},create_time=#{createTime},seller_id=#{sellerId},address_area=#{addressArea}
+			UPDATE shop SET shop_name=#{shopName},shop_status=#{shopStatus},description=#{description},rate=#{rate},create_time=#{createTime},seller_id=#{sellerId},address_area=#{addressArea}
 			WHERE shop_id=#{shopId}
 		</update>
 		

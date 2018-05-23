@@ -33,9 +33,10 @@
     		SELECT * FROM shop
     	 </select>
     	 
+    	 <!-- 添加店铺 -->
     	 <insert id="addShop" parameterType="Shop" useGeneratedKeys="true" keyProperty="shop_id">
-			INSERT INTO shop(shop_name,description,rate,create_time,seller_id,address_area)
-			VALUES(#{shopName},#{description},#{rate},#{createTime},#{sellerId},#{addressArea})
+			INSERT INTO shop(shop_name,shop_status,description,rate,create_time,seller_id,address_area)
+			VALUES(#{shopName},#{shopStatus},#{description},#{rate},#{createTime},#{sellerId},#{addressArea})
 		</insert>
 		
 		<update id="updateShop" parameterType="Shop">

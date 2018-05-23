@@ -6,7 +6,8 @@ public class Seller {
 	private Integer telphone;
 	private String password;
 	private String email;
-	private String avatar;
+	private Integer avatar;
+//	private String avatar;
 	
 	public Integer getSellerId() {
 		return sellerId;
@@ -38,10 +39,17 @@ public class Seller {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getAvatar() {
+	public Integer getAvatar() {
+		return avatar;
+	}
+	public void setAvatar(Integer avatar) {
+		this.avatar = avatar;
+	}
+	
+	/*public String getAvatar() {
 		return avatar;
 	}
 	public void setAvatar(String avatar) {
 		this.avatar = avatar;
-	}
+	}*/
 }

@@ -61,7 +61,7 @@
 		</delete>
 		
 		<select id="findAllUser" resultMap="UserMap">
-    		SELECT * FROM user
+    		SELECT * FROM user ORDER BY user_id DESC
     	</select>
     	
     	<select id="findUserByUserId" parameterType="Integer" resultMap="UserMap">

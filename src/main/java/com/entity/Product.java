@@ -1,6 +1,7 @@
 package com.entity;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 public class Product {
@@ -17,6 +18,9 @@ public class Product {
 	private Integer proNum;
 	private Integer shopId;
 	private Map<Integer,String> imgMap;
+	private List<ProductImg> pImgList;
+	private List<Integer> imgIdList;
+	private List<Integer> deleteImgIdList;
 	
 	public Integer getProId() {
 		return proId;
@@ -96,5 +100,22 @@ public class Product {
 	public void setImgMap(Map<Integer, String> imgMap) {
 		this.imgMap = imgMap;
 	}
-
+	public List<ProductImg> getpImgList() {
+		return pImgList;
+	}
+	public void setpImgList(List<ProductImg> pImgList) {
+		this.pImgList = pImgList;
+	}
+	public List<Integer> getImgIdList() {
+		return imgIdList;
+	}
+	public void setImgIdList(List<Integer> imgIdList) {
+		this.imgIdList = imgIdList;
+	}
+	public List<Integer> getDeleteImgIdList() {
+		return deleteImgIdList;
+	}
+	public void setDeleteImgIdList(List<Integer> deleteImgIdList) {
+		this.deleteImgIdList = deleteImgIdList;
+	}
 }

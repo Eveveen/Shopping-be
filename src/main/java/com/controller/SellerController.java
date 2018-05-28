@@ -3,6 +3,8 @@ package com.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +19,8 @@ public class SellerController {
 	
 	@Autowired
 	private SellerServiceIface sellerService;
+	
+	private Seller tempSeller = new Seller();
 	
 	/**
 	 * 根据用户名和密码判断是否登录成功
@@ -42,6 +46,48 @@ public class SellerController {
 	}
 	
 	/**
+	 * 点击获取验证码时，将获取到的手机号和对应的验证码保存在临时的对象中
+	 * @param user
+	 * @return
+	 */
+	@RequestMapping("/saveCode/{sendCode}/{telphone}")
+	@ResponseBody
+	public boolean saveCode(@PathVariable(value="sendCode") String sendCode, @PathVariable(value="telphone") String telphone){
+		System.out.println("saveCode==" + sendCode + "::::" + telphone);
+		if(sendCode == null || telphone == null){
+			return false;
+		} else {
+//			if(tempUser.getTelphone() != user.getTelphone() || tempUser.getValidateCode() == null){				
+			tempSeller.setValidateCode(sendCode);
+			tempSeller.setTelphone(telphone);
+//			}
+			return true;
+		}
+	}
+	
+	/**
+	 * 验证验证码，将接收到的参数与tempSeller中的数据进行比对
+	 * @param seller
+	 * @return
+	 */
+	@RequestMapping("/verifyCode")
+	@ResponseBody
+	public String verifyCode(@RequestBody Seller seller){
+		System.out.println("tem:" + tempSeller.getValidateCode() + "::: seller=" + seller.getValidateCode() 
+				+ ":::tel:::" + seller.getTelphone() + "::TEM::" + tempSeller.getTelphone());
+		if(sellerService.findSellerByTelphone(seller.getTelphone()) != null || tempSeller.getValidateCode() == null){
+			System.out.println("AAA");
+			return "false";
+		} else if(tempSeller.getValidateCode().equals(seller.getValidateCode()) 
+				&& tempSeller.getTelphone().equals(seller.getTelphone())&&sellerService.findSellerByTelphone(seller.getTelphone()) == null){
+			return "true";
+		} else {
+			System.out.println("BBB");
+			return "false";
+		}
+	}
+	
+	/**
 	 * 获取所有的卖家
 	 * @return
 	 */
@@ -59,7 +105,7 @@ public class SellerController {
 	@RequestMapping("/addSeller")
 	@ResponseBody
 	public boolean addSeller(Seller seller){
-		if(sellerService.addSeller(seller) == 1){
+		if(sellerService.addSeller(seller) != 0){
 			return true;
 		} else {
 			return false;

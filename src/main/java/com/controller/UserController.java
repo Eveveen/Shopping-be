@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -74,16 +75,16 @@ public class UserController {
 	 * @param user
 	 * @return
 	 */
-	@RequestMapping("/saveCode")
+	@RequestMapping("/saveCode/{sendCode}/{telphone}")
 	@ResponseBody
-	public boolean saveCode(User user){
-		System.out.println("saveCode");
-		if(user.getValidateCode() == null){
+	public boolean saveCode(@PathVariable(value="sendCode") String sendCode, @PathVariable(value="telphone") String telphone){
+		System.out.println("saveCode==" + sendCode + "::::" + telphone);
+		if(sendCode == null || telphone == null){
 			return false;
 		} else {
 //			if(tempUser.getTelphone() != user.getTelphone() || tempUser.getValidateCode() == null){				
-			tempUser.setValidateCode(user.getValidateCode());
-			tempUser.setTelphone(user.getTelphone());
+			tempUser.setValidateCode(sendCode);
+			tempUser.setTelphone(telphone);
 //			}
 			return true;
 		}
@@ -96,14 +97,17 @@ public class UserController {
 	 */
 	@RequestMapping("/verifyCode")
 	@ResponseBody
-	public String verifyCode(User user){
-		System.out.println("tem:" + tempUser.getValidateCode());
+	public String verifyCode(@RequestBody User user){
+		System.out.println("tem:" + tempUser.getValidateCode() + "::: user=" + user.getValidateCode() 
+				+ ":::tel:::" + user.getTelphone() + "::TEM::" + tempUser.getTelphone());
 		if(userService.findUserByTelphone(user) != 0 || tempUser.getValidateCode() == null){
+			System.out.println("AAA");
 			return "false";
 		} else if(tempUser.getValidateCode().equals(user.getValidateCode()) 
 				&& tempUser.getTelphone().equals(user.getTelphone())&&userService.findUserByTelphone(user) == 0){
 			return "true";
 		} else {
+			System.out.println("BBB");
 			return "false";
 		}
 	}
@@ -240,59 +244,5 @@ public class UserController {
 			return userService.findUserByName(userName);
 		}
 	}
-	
-	
-	
-	@RequestMapping("/toRegister")
-	public String toRegister(Model model,User user){
-		CreateApiKey c = new CreateApiKey();
-		String apikey = c.create();
-		
-		model.addAttribute("apikey",apikey);
-//		user.setApiKey(apikey);
-		int b = userService.addUser(user);
-		if(b != 0){
-			
-			return "apikey";
-		}else{
-			
-			return null;
-		}
-	}
-	
-	@RequestMapping(value="ajax",produces="text/html;charset=utf-8")
-	@ResponseBody
-	public Object ajax(HttpServletRequest request){
-		
-		String name = request.getParameter("username");
-		System.out.println(name);
-		//User u = new User();
-		//u.setName(name);
-		if(userService.findUserByName(name) == null){ //注册时验证用户是否存在
-			
-			return "0";   // 不存在
-		} else{
-			System.out.println(userService.findUserByName(name).getUserName());
-			
-			return "1";
-		}
-	}
-	
-	/*@RequestMapping("/apikeyTologin/{apikey}")
-	public String toLogin(@PathVariable(value="apikey") String apiKey,HttpServletRequest request,Model model){
-		
-		System.out.println(apiKey + "");
-		User u = new User();
-//		u.setApiKey(apiKey);
-		
-		int b = userService.updateActivationStatus(u);
-		
-		HttpSession session = request.getSession();
-		session.removeAttribute("flag");
-		
-		model.addAttribute("flag", 1);
-			
-		return "redirect:/index";
-	}*/
 
 }

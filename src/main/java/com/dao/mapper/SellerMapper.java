@@ -17,6 +17,13 @@ public interface SellerMapper {
 	public Seller findSellerByNameAndPassword(Seller seller);
 	
 	/**
+	 * 根据电话号码查询商家
+	 * @param telphone
+	 * @return
+	 */
+	public Seller findSellerByTelphone(String telphone);
+	
+	/**
 	 * 查询所有卖家
 	 * @return
 	 */

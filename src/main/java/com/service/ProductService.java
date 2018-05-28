@@ -1,13 +1,17 @@
 package com.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.dao.mapper.ProductImgMapper;
 import com.dao.mapper.ProductMapper;
 import com.entity.Product;
+import com.entity.ProductImg;
 import com.service.iface.ProductServiceIface;
 
 @Service
@@ -16,15 +20,58 @@ public class ProductService implements ProductServiceIface {
 	@Autowired
 	private ProductMapper productMapper;
 	
+	@Autowired
+	private ProductImgMapper pimgMapper;
+	
 	@Override
 	public int addProduct(Product product) {
 		// TODO Auto-generated method stub
-		return productMapper.addProduct(product);
+		int result = productMapper.addProduct(product);
+		for(int imgId : product.getImgIdList()){
+			ProductImg pimg = new ProductImg();
+			pimg.setImgId(imgId);
+			pimg.setProId(product.getProId());
+			pimgMapper.addProductImg(pimg);
+		}
+		return result;
 	}
 
 	@Override
 	public int updateProduct(Product product) {
 		// TODO Auto-generated method stub
+		List<ProductImg> pimgList = pimgMapper.findProductImgByProId(product.getProId());
+		/*List<Integer> imgIdList = new ArrayList<Integer>();
+		Product pro = productMapper.findProductByProId(product.getProId());
+		for(ProductImg pimg : pimgList){
+			imgIdList.add(pimg.getImgId());
+		}
+		product.setImgIdList(imgIdList);*/
+		
+		for(int imgId : product.getImgIdList()){
+			Map<String, Integer> idMap = new HashMap<String, Integer> ();
+			idMap.put("proId", product.getProId());
+			idMap.put("imgId", imgId);
+			if(pimgMapper.findProductImgByProIdAndImgId(idMap) == null){  // 如果原来不存在，添加			
+				ProductImg pimg = new ProductImg();
+				pimg.setImgId(imgId);
+				pimg.setProId(product.getProId());
+				pimgMapper.addProductImg(pimg);
+			} else {
+				if(product.getDeleteImgIdList() != null){					
+					for(ProductImg pi : pimgList){
+						for(int delImgId : product.getDeleteImgIdList()){						
+							if(pi.getImgId() == delImgId){
+								Map<String, Integer> delIdMap = new HashMap<String, Integer> ();
+								delIdMap.put("proId", product.getProId());
+								delIdMap.put("imgId", delImgId);
+								pimgMapper.deleteProductImgByProIdAndImgId(delIdMap);
+							}
+						}
+					}
+				}
+				
+			}
+		}
 		return productMapper.updateProduct(product);
 	}
 
@@ -49,7 +96,14 @@ public class ProductService implements ProductServiceIface {
 	@Override
 	public Product findProductByProId(Integer proId) {
 		// TODO Auto-generated method stub
-		return productMapper.findProductByProId(proId);
+		List<ProductImg> pimgList = pimgMapper.findProductImgByProId(proId);
+		List<Integer> imgIdList = new ArrayList<Integer>();
+		Product product = productMapper.findProductByProId(proId);
+		for(ProductImg pimg : pimgList){
+			imgIdList.add(pimg.getImgId());
+		}
+		product.setImgIdList(imgIdList);
+		return product;
 	}
 
 	@Override

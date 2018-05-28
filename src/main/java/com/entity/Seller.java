@@ -3,10 +3,11 @@ package com.entity;
 public class Seller {
 	private Integer sellerId;
 	private String sellerName;
-	private Integer telphone;
+	private String telphone;
 	private String password;
 	private String email;
 	private Integer avatar;
+	private String validateCode;
 //	private String avatar;
 	
 	public Integer getSellerId() {
@@ -21,10 +22,10 @@ public class Seller {
 	public void setSellerName(String sellerName) {
 		this.sellerName = sellerName;
 	}
-	public Integer getTelphone() {
+	public String getTelphone() {
 		return telphone;
 	}
-	public void setTelphone(Integer telphone) {
+	public void setTelphone(String telphone) {
 		this.telphone = telphone;
 	}
 	public String getPassword() {
@@ -44,6 +45,12 @@ public class Seller {
 	}
 	public void setAvatar(Integer avatar) {
 		this.avatar = avatar;
+	}
+	public String getValidateCode() {
+		return validateCode;
+	}
+	public void setValidateCode(String validateCode) {
+		this.validateCode = validateCode;
 	}
 	
 	/*public String getAvatar() {

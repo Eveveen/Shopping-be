@@ -28,7 +28,7 @@ public class ProductController {
 	@ResponseBody
 	public boolean addProduct(@RequestBody Product product){
 		System.out.println(product.getProName());
-		if(productService.addProduct(product) == 1){
+		if(productService.addProduct(product) != 0){
 			return true;
 		} else {
 			return false;

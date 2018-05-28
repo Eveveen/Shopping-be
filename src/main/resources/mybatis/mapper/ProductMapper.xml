@@ -28,9 +28,14 @@
 		
 		  <!-- 添加商品 -->
 		  <insert id="addProduct"  parameterType="Product" useGeneratedKeys="true" keyProperty="pro_id">
+			 <selectKey keyProperty="proId" order="AFTER" resultType="java.lang.Integer">  
+	            <!-- SELECT LAST_INSERT_ID()：得到刚insert到数据表中的记录的主键值，只适用于自增主键 -->  
+	            SELECT LAST_INSERT_ID()  
+	        </selectKey>  
 		    INSERT INTO product(pro_name,img_id,description,price,scan_num,category,update_time,pro_status,pro_num,shop_id)
 		    VALUES(#{proName},#{imgId},#{description},#{price},0,#{category},#{updateTime},#{proStatus},#{proNum},#{shopId})
 		  </insert>
+		  
 		  
 		  <!-- 修改商品信息 -->
 		  <update id="updateProduct" parameterType="Product">
@@ -59,7 +64,8 @@
 		  <select id="findProductByShopId" parameterType="int" resultMap="ProductMap">
     		SELECT *
     		FROM product
-    		WHERE shop_id = #{shopId}
+    		WHERE shop_id = #{shopId} 
+    		ORDER BY pro_id DESC
     	  </select>
     	  
     	  <!-- 查询该店铺的未失效的商品 -->
@@ -67,6 +73,7 @@
     		SELECT *
     		FROM product
     		WHERE shop_id = #{shopId} AND pro_status = #{proStatus}
+    		ORDER BY pro_id DESC
     	  </select>
     	  
     	  <!-- 根据店铺id和商品id查询商品信息，有点多余了，可直接使用根据商品id进行查询 -->
@@ -95,6 +102,7 @@
     		SELECT *
     		FROM product
     		WHERE pro_name LIKE #{proName} AND shop_id = #{shopId}
+    		ORDER BY pro_id DESC
     	  </select>
     	  
     	  <!-- 搜索店铺内未失效的商品 -->
@@ -102,6 +110,7 @@
     		SELECT *
     		FROM product
     		WHERE pro_name LIKE #{proName} AND shop_id = #{shopId} AND pro_status = 1
+    		ORDER BY pro_id DESC
     	  </select>
 		
 

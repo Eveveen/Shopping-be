@@ -8,7 +8,7 @@
     	<resultMap id="SellerMap" type="com.entity.Seller">
 			<result column="seller_id" jdbcType="INTEGER" property="sellerId" />
 			<result column="seller_name" jdbcType="VARCHAR" property="sellerName" />
-			<result column="telphone" jdbcType="INTEGER" property="telphone" />
+			<result column="telphone" jdbcType="VARCHAR" property="telphone" />
 			<result column="password" jdbcType="VARCHAR" property="password" />
 			<result column="email" jdbcType="VARCHAR" property="email" />
 			<result column="avatar" jdbcType="INTEGER" property="avatar" />
@@ -20,14 +20,29 @@
     		WHERE seller_name = #{sellerName} AND password = #{password}
     	</select>
     	
+    	<select id="findSellerByTelphone" parameterType="Seller" resultMap="SellerMap">
+    		SELECT *
+    		FROM seller
+    		WHERE telphone = #{telphone}
+    	</select>
+    	
     	<select id="findAllSeller" resultMap="SellerMap">
     		SELECT * FROM seller ORDER BY seller_id DESC
     	</select>
     	
-    	<insert id="addSeller" parameterType="Seller" useGeneratedKeys="true" keyProperty="seller_id">
+    	<!-- <insert id="addSeller" parameterType="Seller" useGeneratedKeys="true" keyProperty="seller_id">
 			INSERT INTO seller(seller_name,password,telphone,email,avatar)
 			VALUES(#{sellerName},#{password},#{telphone},#{email},#{avatar})
-		</insert>
+		</insert> -->
+		
+		<insert id="addSeller"  parameterType="Seller" useGeneratedKeys="true" keyProperty="seller_id">
+			 <selectKey keyProperty="sellerId" order="AFTER" resultType="java.lang.Integer">  
+	            <!-- SELECT LAST_INSERT_ID()：得到刚insert到数据表中的记录的主键值，只适用于自增主键 -->  
+	            SELECT LAST_INSERT_ID()  
+	        </selectKey>  
+		    INSERT INTO seller(seller_name,password,telphone,email,avatar)
+			VALUES(#{sellerName},#{password},#{telphone},#{email},38)
+		  </insert>
 		
 		<update id="updateSellerById" parameterType="Seller">
 			UPDATE seller SET seller_name=#{sellerName},password=#{password},email=#{email},avatar=#{avatar},telphone=#{telphone}

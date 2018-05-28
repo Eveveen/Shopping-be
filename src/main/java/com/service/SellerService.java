@@ -30,7 +30,9 @@ public class SellerService implements SellerServiceIface {
 	@Override
 	public int addSeller(Seller seller) {
 		// TODO Auto-generated method stub
-		return sellerMapper.addSeller(seller);
+		sellerMapper.addSeller(seller);
+		System.out.println(seller.getSellerId());
+		return seller.getSellerId();
 	}
 
 	@Override
@@ -49,6 +51,12 @@ public class SellerService implements SellerServiceIface {
 	public Seller findSellerBySellerId(Integer sellerId) {
 		// TODO Auto-generated method stub
 		return sellerMapper.findSellerBySellerId(sellerId);
+	}
+
+	@Override
+	public Seller findSellerByTelphone(String telphone) {
+		// TODO Auto-generated method stub
+		return sellerMapper.findSellerByTelphone(telphone);
 	}
 
 }

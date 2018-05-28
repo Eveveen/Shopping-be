@@ -5,10 +5,7 @@ public class User {
 	private String userName;
 	private String password;
 	private String email;
-	private Integer telphone;
-//	private String description;
-//	private String apiKey;
-//	private Integer activationStatus;
+	private String telphone;
 	private String avatar;
 	private Integer role;
 	private String validateCode;
@@ -51,11 +48,11 @@ public class User {
 		this.email = email;
 	}
 
-	public Integer getTelphone() {
+	public String getTelphone() {
 		return telphone;
 	}
 
-	public void setTelphone(Integer telphone) {
+	public void setTelphone(String telphone) {
 		this.telphone = telphone;
 	}
 

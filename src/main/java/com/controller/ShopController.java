@@ -1,5 +1,6 @@
 package com.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,7 @@ public class ShopController {
 	@RequestMapping("/addShop")
 	@ResponseBody
 	public boolean addShop(Shop shop){
+		shop.setCreateTime(new Date());
 		if(shopService.addShop(shop) == 1) {
 			return true;
 		} else {			

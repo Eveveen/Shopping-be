@@ -8,7 +8,7 @@
     	 <resultMap id="UserMap" type="com.entity.User">
 			<result column="user_id" jdbcType="INTEGER" property="userId" />
 			<result column="user_name" jdbcType="VARCHAR" property="userName" />
-			<result column="telphone" jdbcType="INTEGER" property="telphone" />
+			<result column="telphone" jdbcType="VARCHAR" property="telphone" />
 			<result column="password" jdbcType="VARCHAR" property="password" />
 			<result column="email" jdbcType="VARCHAR" property="email" />
 			<result column="avatar" jdbcType="VARCHAR" property="avatar" />
@@ -21,7 +21,7 @@
     		WHERE user_name = #{userName} AND password = #{password}
     	</select>
     	
-    	<select id="findUserByTelphone" parameterType="Integer" resultType="int">
+    	<select id="findUserByTelphone" parameterType="String" resultType="int">
     		<!-- SELECT user_id userId,user_name userName,password,email,avatar,role -->
     		SELECT COUNT(*)
     		FROM user
@@ -29,8 +29,8 @@
     	</select>
     	
     	<insert id="addUser" parameterType="User" useGeneratedKeys="true" keyProperty="user_id">
-			INSERT INTO user(user_name,password,telphone,email,avatar,role)
-			VALUES(#{userName},#{password},#{telphone},#{email},'',1)
+			INSERT INTO user(user_name,password,telphone,email,avatar,role,img_id)
+			VALUES(#{userName},#{password},#{telphone},#{email},'',1,38)
 		</insert>
 		
 		<select id="findUserByName" parameterType="String" resultMap="UserMap">

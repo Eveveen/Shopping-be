@@ -102,7 +102,9 @@ public class UserController {
 				+ ":::tel:::" + user.getTelphone() + "::TEM::" + tempUser.getTelphone());
 		if(userService.findUserByTelphone(user) != 0 || tempUser.getValidateCode() == null){
 			System.out.println("AAA");
-			return "false";
+			return "tel";
+		} else if(userService.findUserByName(user.getUserName()) != null){
+			return "user";
 		} else if(tempUser.getValidateCode().equals(user.getValidateCode()) 
 				&& tempUser.getTelphone().equals(user.getTelphone())&&userService.findUserByTelphone(user) == 0){
 			return "true";

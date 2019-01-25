@@ -46,30 +46,32 @@ public class ProductService implements ProductServiceIface {
 			imgIdList.add(pimg.getImgId());
 		}
 		product.setImgIdList(imgIdList);*/
-		
-		for(int imgId : product.getImgIdList()){
-			Map<String, Integer> idMap = new HashMap<String, Integer> ();
-			idMap.put("proId", product.getProId());
-			idMap.put("imgId", imgId);
-			if(pimgMapper.findProductImgByProIdAndImgId(idMap) == null){  // 如果原来不存在，添加			
-				ProductImg pimg = new ProductImg();
-				pimg.setImgId(imgId);
-				pimg.setProId(product.getProId());
-				pimgMapper.addProductImg(pimg);
-			} else {
-				if(product.getDeleteImgIdList() != null){					
-					for(ProductImg pi : pimgList){
-						for(int delImgId : product.getDeleteImgIdList()){						
-							if(pi.getImgId() == delImgId){
-								Map<String, Integer> delIdMap = new HashMap<String, Integer> ();
-								delIdMap.put("proId", product.getProId());
-								delIdMap.put("imgId", delImgId);
-								pimgMapper.deleteProductImgByProIdAndImgId(delIdMap);
+		if(product.getImgIdList()!=null){
+			
+			for(int imgId : product.getImgIdList()){
+				Map<String, Integer> idMap = new HashMap<String, Integer> ();
+				idMap.put("proId", product.getProId());
+				idMap.put("imgId", imgId);
+				if(pimgMapper.findProductImgByProIdAndImgId(idMap) == null){  // 如果原来不存在，添加			
+					ProductImg pimg = new ProductImg();
+					pimg.setImgId(imgId);
+					pimg.setProId(product.getProId());
+					pimgMapper.addProductImg(pimg);
+				} else {
+					if(product.getDeleteImgIdList() != null){					
+						for(ProductImg pi : pimgList){
+							for(int delImgId : product.getDeleteImgIdList()){						
+								if(pi.getImgId() == delImgId){
+									Map<String, Integer> delIdMap = new HashMap<String, Integer> ();
+									delIdMap.put("proId", product.getProId());
+									delIdMap.put("imgId", delImgId);
+									pimgMapper.deleteProductImgByProIdAndImgId(delIdMap);
+								}
 							}
 						}
 					}
+					
 				}
-				
 			}
 		}
 		return productMapper.updateProduct(product);

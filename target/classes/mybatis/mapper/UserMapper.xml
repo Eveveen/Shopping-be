@@ -4,14 +4,24 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
     <mapper namespace="com.dao.mapper.UserMapper">
+    
+    	 <resultMap id="UserMap" type="com.entity.User">
+			<result column="user_id" jdbcType="INTEGER" property="userId" />
+			<result column="user_name" jdbcType="VARCHAR" property="userName" />
+			<result column="telphone" jdbcType="VARCHAR" property="telphone" />
+			<result column="password" jdbcType="VARCHAR" property="password" />
+			<result column="email" jdbcType="VARCHAR" property="email" />
+			<result column="avatar" jdbcType="VARCHAR" property="avatar" />
+			<result column="img_id" jdbcType="INTEGER" property="imgId" />
+		 </resultMap>
 
-    	<select id="findUserByNameAndPassword" parameterType="User" resultType="User">
-    		SELECT user_id userId,user_name userName,password,email,avatar,role
+    	<select id="findUserByNameAndPassword" parameterType="User" resultMap="UserMap">
+    		SELECT *
     		FROM user
     		WHERE user_name = #{userName} AND password = #{password}
     	</select>
     	
-    	<select id="findUserByTelphone" parameterType="Integer" resultType="int">
+    	<select id="findUserByTelphone" parameterType="String" resultType="int">
     		<!-- SELECT user_id userId,user_name userName,password,email,avatar,role -->
     		SELECT COUNT(*)
     		FROM user
@@ -19,21 +29,46 @@
     	</select>
     	
     	<insert id="addUser" parameterType="User" useGeneratedKeys="true" keyProperty="user_id">
-			INSERT INTO user(user_name,password,telphone,email,avatar,role)
-			VALUES(#{userName},#{password},#{telphone},#{email},'/resource/images/avatar-default.gif',1)
+			INSERT INTO user(user_name,password,telphone,email,avatar,role,img_id)
+			VALUES(#{userName},#{password},#{telphone},#{email},'',1,38)
 		</insert>
 		
-		<select id="findUserByName" parameterType="String" resultType="User">
-    		<!-- SELECT user_id userId,user_name userName,password,email,avatar,role -->
-    		SELECT user_id userId,user_name userName,password,email,avatar,role,telphone
+		<select id="findUserByName" parameterType="String" resultMap="UserMap">
+    		SELECT *
     		FROM user
     		WHERE user_name = #{userName}
     	</select>
+		
+		<!-- <select id="findUserByName" parameterType="String" resultType="User">
+    		SELECT user_id userId,user_name userName,password,email,avatar,role
+    		SELECT user_id userId,user_name userName,password,email,avatar,role,telphone
+    		FROM user
+    		WHERE user_name = #{userName}
+    	</select> -->
     	
     	<update id="updateUserById" parameterType="User">
-			UPDATE user SET user_name=#{userName},password=#{password},email=#{email},avatar=#{avatar},role=#{role},telphone=#{telphone}
+			UPDATE user SET user_name=#{userName},password=#{password},email=#{email},role=#{role},telphone=#{telphone},img_id=#{imgId}
 			WHERE user_id=#{userId}
 		</update>
+		
+		<update id="editUserById" parameterType="User">
+			UPDATE user SET user_name=#{userName},email=#{email},telphone=#{telphone}
+			WHERE user_id=#{userId}
+		</update>
+		
+		<delete id="deleteUser">
+			DELETE FROM user WHERE user_id=#{userId}
+		</delete>
+		
+		<select id="findAllUser" resultMap="UserMap">
+    		SELECT * FROM user ORDER BY user_id DESC
+    	</select>
+    	
+    	<select id="findUserByUserId" parameterType="Integer" resultMap="UserMap">
+    		SELECT *
+    		FROM user
+    		WHERE user_id = #{userId}
+    	</select>
     	 
     	<!-- <select id="findUserByName" parameterType="String" resultType="User">
     		SELECT user_id userId,name,password,email,description,api_key apiKey,activation_status activationStatus,avatar,role

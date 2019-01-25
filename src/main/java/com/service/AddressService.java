@@ -11,7 +11,7 @@ import com.service.iface.AddressServiceIface;
 
 @Service
 public class AddressService implements AddressServiceIface {
-	
+
 	@Autowired
 	private AddressMapper addressMapper;
 
@@ -20,7 +20,7 @@ public class AddressService implements AddressServiceIface {
 		// TODO Auto-generated method stub
 		return addressMapper.findAddressByUserId(userId);
 	}
-	
+
 	@Override
 	public Address findAddressByAddressId(Integer addressId) {
 		// TODO Auto-generated method stub
@@ -32,13 +32,13 @@ public class AddressService implements AddressServiceIface {
 		// TODO Auto-generated method stub
 		return addressMapper.findDefaultAddressByUserId(userId);
 	}
-	
+
 	@Override
 	public int addAddress(Address address) {
 		// TODO Auto-generated method stub
 		return addressMapper.addAddress(address);
 	}
-	
+
 	@Override
 	public int changeAddressStatus(Integer userId) {
 		// TODO Auto-generated method stub
